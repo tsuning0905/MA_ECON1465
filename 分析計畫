@@ -1,0 +1,236 @@
+# ECO1465 應用因果機器學習 — 分析路徑檢查
+
+## 課程規則 vs Balán論文
+
+### 三大課程要求
+1. **Discrete Treatment Design**: ✅ Balán的Local vs Central是完美的二元treatment
+2. **Sample Size**: ✅ 45,162個properties，足夠用ML
+3. **Complete Application**: ✅ 必須應用所有課程模型
+
+### 課程教的所有方法（必須全部用上）
+- **Week 7**: Matching, Propensity Score (估計ATE)
+- **Week 8**: S/T/X-learners (估計CATE)
+- **Week 9**: AIPW / DR-learner (更robust的估計)
+- **Week 10**: DML / Double ML (有效的推論)
+- **Week 11**: Causal Forests (局部異質性)
+- Week 4: DiD (如果有time dimension)
+- Week 5-6: DAG + 識別假設
+
+---
+
+## 分析路徑對課程規則的符合度
+
+### 🟢 **符合規則 - 可直接做的分析**
+
+#### ✅ **1. 酋長知識質量異質性 → 預測支付傾向的準確性分層**
+- **Treatment**: Binary (High-knowledge chief vs Low-knowledge chief)
+- **Estimand**: CATE τ(x) — 酋長知識水平如何改變CLI的效果？
+- **必要模型**:
+  - Week 7: e(x)估計（誰被分配到high-knowledge chief）
+  - Week 8: X-learner估計 τ̂(x)
+  - Week 9: AIPW讓效果對e的誤差robust
+  - Week 10: DML給valid confidence interval
+  - Week 11: Causal forest找出哪些X驅動異質性
+- **論文貢獻**: "酋長知識的準確性決定了本地信息的價值" — 直接回答Tier 2假說
+- **數據充分性**: ✅ 論文Table 8已有知識quiz score，可以分quartile
+
+---
+
+#### ✅ **2. 信息覆蓋率 × 準確性的2×2矩陣**
+- **Treatment**: Binary (High coverage & high accuracy vs combinations)
+- **Estimand**: CATE τ(x | Chief knowledge profile)
+- **論文貢獻**: "信息必須既準確又全覆蓋" — 量化completeness-precision的trade-off
+- **實施**:
+  - 計算每個酋長的"知識覆蓋率" = quiz中正確回答的proportion
+  - 計算"準確性" = quiz預測得分 vs 實際支付propensity的相關性
+  - 分quartile組合，跑所有Week 7-11模型
+
+---
+
+#### ✅ **3. 「地理鄰近性 vs 社會關係」的本地性解構**
+- **Treatment**: Binary (Geographically near chief vs far away)
+- **Estimand**: τ(distance from chief)
+- **必要模型**: 所有Week 7-11
+- **論文貢獻**: "Local information的『local』具體是什麼？"
+  - Subset 1: 距酋長<100m, CLI效果
+  - Subset 2: 距酋長>500m, CLI效果
+  - 控制社會特徵(acquaintance with chief at baseline)
+- **數據**: hh_distances.csv可用 ✅
+
+---
+
+#### ✅ **4. Collector能力 × 酋長知識的互動**
+- **Treatment**: Binary (High-education collector vs Low)
+- **Estimand**: τ̂(x, collector education) — heterogeneous by BOTH household X AND collector characteristics
+- **模型**: Week 8 X-learner搭配ŵeights = 1{collector_education_high}
+- **論文貢獻**: "信息只在有能力使用它的人手中才有價值"
+- **數據**: collector_baseline有教育年數 ✅
+
+---
+
+#### ✅ **5. 「信息多維分解」：支付傾向的哪個面向最重要？**
+- **Treatment不變**: Local vs Central
+- **Mechanism analysis**: 使用mediation logic
+- **必要模型**: 
+  - Week 7-11估計ATE和CATE
+  - Week 10 DML + 機制分解 (mediation via liquidity index, tax morale index, etc.)
+- **論文貢獻**: "酋長知道的是流動性、稅務道德，還是社會關係？各占多少weight？"
+
+---
+
+### 🟡 **部分符合 - 需要澄清或額外說明**
+
+#### ⚠️ **6. 信息可信度(Credibility) — 需要檢查數據中是否有衡量**
+- **問題**: Balán有沒有問state collectors「你有多相信酋長的信息」？
+- **我的建議**: 讀論文的midline/endline survey instrument
+- **如果有**: ✅ 可做 (用credibility score做X變數層化)
+- **如果沒有**: ❌ 不能做（需要新的post-treatment測試）
+- **替代方案**: 用"state collector follow the chief's recommendation"的行為作為implicit credibility
+
+---
+
+#### ⚠️ **7. 選擇性尋租(Selective bribery)的Mocan假說檢驗**
+- **是否是new treatment?** 否——這是Local vs Central下的異質性分析
+- **必要模型**: 所有Week 7-11
+- **方法**: 估計 τ̂(education level, income level, gender)
+  - 計算"賄賂的Gini" = 不同族群的賄賂率variance
+  - 檢驗:Local的Gini > Central的Gini?
+- **符合度**: ✅ 符合（是CATE分析，不是new treatment）
+
+---
+
+### 🔴 **不符合規則 - 不建議做**
+
+#### ❌ **8. 「信息時間衰減」(temporal dynamics)**
+- **問題**: Midline vs Endline不是「新treatment」，是同一treatment在時間軸上的觀察
+- **課程規則**: 論文必須有"discrete treatment"，不是時序對比
+- **不符合**: ❌ 雖然可以分析，但不是course要求的causal structure
+- **替代**: 如果要做time analysis，需要課程approval
+
+---
+
+#### ❌ **9. 「信息政策設計」— 反事實思想實驗**
+- **問題**: "如何讓CLI更接近Local？" 是對策略的思辨，不是對現有treatment的因果估計
+- **不符合**: ❌ 沒有empirically可驗證的treatment variation
+- **替代**: 可作為論文結論的建議，但不是main analysis
+
+---
+
+## 📊 最強的三個論文角度（完全符合ECO1465）
+
+### **Angle 1**: 酋長知識的準確性與完整性 (推薦 ⭐⭐⭐)
+```
+Research Question: 
+"酋長本地信息的價值來自【準確性】還是【覆蓋率】？
+ 或者兩者都需要？"
+
+Main Analysis:
+1. 計算每個酋長的"知識質量指數" = accuracy × coverage
+2. Week 4 Baseline: DiD顯示published 3.2pp效果
+3. Week 7-11: 按知識質量分層，估計τ̂(x, chief quality)
+4. Week 11 Causal Forest: 哪些X與知識質量交互影響效果？
+
+Deliverable:
+- 一個matrix: 高準確-高覆蓋 vs 高準確-低覆蓋 vs 低準確-高覆蓋 
+  下的CLI效果差異
+- Policy implication: 國家應先找「準確」的酋長還是「廣泛認識」的？
+```
+
+---
+
+### **Angle 2**: 「本地性」的地理vs社會分解 (推薦 ⭐⭐⭐)
+```
+Research Question: 
+"Local information的【local】具體是geographic proximity
+ 還是social relationship？"
+
+Main Analysis:
+1. 用hh_distances.csv + baseline acquaintance measure
+2. 分層估計: τ̂(distance, acquaintance_with_chief)
+3. Week 7-11所有模型，每個subgroup都跑一遍
+4. 特別檢查: 
+   - 距離控制後，acquaintance的係數變化
+   - 這告訴我們有多少是geographic vs social
+
+Deliverable:
+- Figure: 地理距離 vs 社會距離 下的CLI效果heterogeneity
+- Mechanism: 本地信息其實是「信任distance」而非geographic
+```
+
+---
+
+### **Angle 3**: Collector能力的制約 (推薦 ⭐⭐)
+```
+Research Question:
+"State collectors的教育/經驗限制了他們使用酋長信息的能力嗎？"
+
+Main Analysis:
+1. Stratify by collector characteristics
+   (education, prior revenue, age)
+2. Week 8 X-learner: 估計 τ̂(x) 按collector education
+3. Week 11 Causal Forest: 酋長知識與collector能力的interaction
+4. 機制檢驗:
+   - High-education collector + high-knowledge chief 
+     → 最大的CLI gains?
+   - Low-education collector + high-knowledge chief 
+     → CLI gains collapse?
+
+Deliverable:
+- Table: 按collector類型分層的meta-learner結果
+- Policy: 培訓更聰慧的state collectors能多大程度彌補
+  信息傳遞的效率損失？
+```
+
+---
+
+## 🚨 **必須檢查的Balán原始數據細節**
+
+在Week 2 proposal前，確保你確認了：
+
+1. **Midline/Endline survey instrument** (你有嗎？)
+   - state collectors被問過什麼問題？
+   - 是否有「你有多相信酋長」的題目？
+
+2. **Collector特徵數據**
+   - 教育年數、年齡、過往revenue是否available for each team?
+   - 還是只有pooled平均？
+
+3. **地理數據**
+   - hh_distances.csv的確切含義？
+   - 是距酋長家還是距neighborhood中心？
+
+4. **覆蓋率的定義**
+   - 酋長被問quiz的12個households，是隨機選還是有bias?
+   - 你如何推論到「他對整個neighborhood的知識覆蓋」？
+
+---
+
+## ✅ 給你的最終建議
+
+**推薦組合論文結構**:
+
+```
+Identification (Week 5-6):
+  - DAG: Local vs Central，控制variables
+  - Assumption: Selection on observables (unconfoundedness)
+  - 圖: Overlap check
+
+Baseline (Week 4):
+  - DiD: 確認Balán的3.2pp
+
+Main Analysis (Week 7-11, 選一個):
+  
+  【OPTION A - 最有故事性】
+  Angle 1: 酋長知識質量 → CLI效果異質性
+  - Week 8: X-learner估計 τ̂(x | chief_knowledge_quartile)
+  - Week 11: Causal forest顯示interaction
+  
+  【OPTION B - 最mechanical】
+  Angle 3: Collector能力 × 酋長知識
+  - Week 8: T-learner或X-learner
+  - Stratify by collector education × chief knowledge
+  - Week 10: DML給exact inference
+```
+
+**核心**: 選一個，然後把Week 7-11所有方法都用上。
+論文目標是展示你會用**所有課程工具**，不只是一個。
