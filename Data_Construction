@@ -1,0 +1,632 @@
+from __future__ import annotations
+ 
+import re
+import warnings
+from pathlib import Path
+ 
+import numpy as np
+import pandas as pd
+ 
+
+import subprocess
+from pathlib import Path
+import numpy as np
+import pandas as pd
+
+# ---- Colab: clone the GitHub repo (only the first time in a session) ----
+REPO_URL = "https://github.com/tsuning0905/MA_ECON1465.git"
+REPO_DIR = Path("/content/MA_ECON1465")
+if not REPO_DIR.exists():
+    subprocess.run(["git", "clone", REPO_URL, str(REPO_DIR)], check=True)
+
+DATA_DIR = REPO_DIR                      # the CSVs are in the repo root
+OUT_DIR = DATA_DIR / "data_clean"
+OUT_DIR.mkdir(exist_ok=True)
+
+PILOT_A7 = [200, 201, 202, 203, 207, 208, 210]
+STATA_EPOCH = pd.Timestamp("1960-01-01")
+
+
+
+ # ------------------------------------------------------------------------------
+# Helpers
+# ------------------------------------------------------------------------------
+def td(s: str) -> int:
+    """Stata td(15jun2018) -> Stata daily date integer."""
+    return (pd.Timestamp(s) - STATA_EPOCH).days
+ 
+ 
+def to_stata_date(x: pd.Series) -> pd.Series:
+    """Parse a date/datetime column into Stata daily-date numbers (float, NaN if missing)."""
+    d = pd.to_datetime(x, errors="coerce").dt.normalize()
+    return (d - STATA_EPOCH).dt.days.astype("float")
+ 
+ 
+def stata_to_datetime(x: pd.Series) -> pd.Series:
+    return STATA_EPOCH + pd.to_timedelta(x, unit="D")
+ 
+ 
+def st_gt(x: pd.Series, v) -> pd.Series:
+    """Stata `x > v`: missing counts as +infinity, so missing > v is True."""
+    return x.isna() | (x > v)
+ 
+ 
+def st_eq(a: pd.Series, b: pd.Series) -> pd.Series:
+    """Stata `a == b` for numerics: missing == missing is True."""
+    return (a == b) | (a.isna() & b.isna())
+ 
+ 
+def read_optional(name: str, **kw) -> pd.DataFrame | None:
+    """Read <name> (.csv/.dta/.xlsx) from DATA_DIR if it exists, else warn and return None."""
+    p = DATA_DIR / name
+    if not p.exists():
+        warnings.warn(f"[missing input] {name} not found - skipped", stacklevel=2)
+        return None
+    if p.suffix == ".csv":
+        return pd.read_csv(p, low_memory=False, **kw)
+    if p.suffix == ".dta":
+        return pd.read_stata(p, convert_categoricals=False, **kw)
+    if p.suffix == ".xlsx":
+        return pd.read_excel(p, **kw)
+    raise ValueError(p)
+ 
+ 
+def read_csv(name: str) -> pd.DataFrame:
+    return pd.read_csv(DATA_DIR / name, low_memory=False)
+ 
+ 
+def clean_str(s: pd.Series) -> pd.Series:
+    """Stata string semantics: missing string is ''."""
+    return s.astype("object").where(s.notna(), "").astype(str)
+ 
+ 
+def stata_merge(master: pd.DataFrame, using: pd.DataFrame, on: str,
+                validate: str) -> pd.DataFrame:
+    """Replicates `merge <validate> <on> using ...` (outer join, master values
+    win for overlapping variables, _merge coded 1/2/3)."""
+    shared = [c for c in using.columns if c in master.columns and c != on]
+    # pandas would match NaN keys to each other; Stata's 1:1/m:1 merges in this
+    # do-file never have missing keys on the using side, so guard against it.
+    using = using[using[on].notna()]
+    # Rows with a missing key (polygon-only rows created by the m:1 polygon
+    # merges) cannot match anything: keep them as master-only.
+    nokey = master[master[on].isna()]
+    master = master[master[on].notna()]
+    m = master.merge(using, on=on, how="outer", suffixes=("", "__using"),
+                     validate=validate, indicator=True)
+    m["_merge"] = m["_merge"].map({"left_only": 1, "right_only": 2, "both": 3}).astype(int)
+    for c in shared:
+        uc = f"{c}__using"
+        m[c] = np.where(m["_merge"] == 2, m[uc], m[c])
+        m = m.drop(columns=uc)
+    if len(nokey):
+        m = pd.concat([m, nokey.assign(_merge=1)], ignore_index=True)
+    return m
+ 
+ 
+def ensure_cols(df: pd.DataFrame, cols, fill=np.nan) -> pd.DataFrame:
+    for c in cols:
+        if c not in df.columns:
+            df[c] = fill
+    return df
+ 
+ 
+# ==============================================================================
+# DATASET CONSTRUCTION FOR ANALYSIS
+# ==============================================================================
+ 
+# ---------------------------------------------------------------- Geographic
+chef = read_optional("concessions_chefferies.csv")
+if chef is not None:
+    chef = chef[chef["polygon"].notna()]
+    chef = chef[~((chef["polygon"] >= 400) & (chef["polygon"] < 500))]  # Nganza polygons
+    chef = chef.rename(columns={"polygon": "a7"})
+ 
+# ------------------------------------------------ 2016 polygon treatment
+tmt16 = read_csv("campaign_2016_neighborhoods.csv")
+tmt16 = tmt16[tmt16["nganza"] != 1][["a7", "program"]].rename(columns={"program": "tmt_2016"})
+ 
+# ------------------------------------------------ 2018 polygon treatment
+assign = read_csv("randomization_schedule.csv")[["a7", "treatment", "month"]]
+pilot_rows = pd.DataFrame({
+    "a7":        [201, 202, 203, 210, 200, 207, 208],
+    "treatment": [2,   1,   1,   2,   1,   2,   4],   # L, C, C, L, C, L, CxL
+    "month":     [0] * 7,
+})
+assign = pd.concat([assign, pilot_rows], ignore_index=True)
+assign.loc[assign["a7"] == 654, "treatment"] = 2   # field mistake: assigned CxL, implemented L
+assign = assign.rename(columns={"treatment": "tmt"})
+TMT_LABELS = {0: "Control", 1: "Central", 2: "Local", 3: "Central + Chief Info", 4: "Central X Local"}
+ 
+# ------------------------------------------------ Flier assignment
+pilots = []
+for i, ratecol in [(1, "rate_rand"), (2, "rate"), (3, "rate")]:
+    p = read_optional(f"fliers_pilot_set{i}.xlsx")
+    if p is not None:
+        pilots.append(p[["code", "treatment_fr", ratecol]].rename(columns={ratecol: "rate"}))
+ 
+full = read_csv("fliers_campaign.csv")
+full = full[~full["a7"].isin(PILOT_A7)][["code", "treatment_fr", "rate"]]
+flier = pd.concat([full, *pilots], ignore_index=True)
+flier = flier.rename(columns={"code": "compound1", "rate": "assign_flier_rate",
+                              "treatment_fr": "assign_treatment_fr"})
+ 
+# polygon = first 3 digits of a 6-digit code, first 4 of a 7-digit code
+cstr = flier["compound1"].astype("Int64").astype(str)
+flier["a7"] = pd.to_numeric(
+    np.select([cstr.str.len() == 6, cstr.str.len() == 7], [cstr.str[:3], cstr.str[:4]], default=""),
+    errors="coerce")
+flier["pilot"] = flier["a7"].isin(PILOT_A7).astype(int)
+ 
+MSG = {
+    "Il est important de payer l'impôt foncier.": 1,
+    "Si vous refusez de payer l'impôt foncier, vous pourriez être interpellé à la DGRKOC pour le suivi et le contrôle.": 2,
+    "Si vous refusez de payer l'impôt foncier, vous pourriez être interpellé à vous rendre chez le chef de quartier pour le suivi et le contrôle.": 3,
+    "Le Gouvernement Provincial pourra améliorer les infrastructures publiques à Kananga seulement si les résidents paient l'impôt foncier.": 4,
+    "Payez l'impôt foncier afin de montrer que vous avez confiance en l'État et ses agents.": 6,
+}
+flier["flier_all"] = flier["assign_treatment_fr"].map(MSG)
+flier.loc[flier["pilot"] == 1, "flier_all"] = np.nan
+flier.loc[flier["flier_all"].isna() & (flier["pilot"] != 1), "flier_all"] = 5  # localized public-goods msg
+flier = flier[["a7", "compound1", "assign_flier_rate", "assign_treatment_fr", "flier_all"]]
+ 
+# ------------------------------------------------ Cartographie (registration)
+carto = read_csv("registration_noPII.csv").rename(columns={"today": "today_carto"})
+carto = carto[carto["tot_complete"] == 1].drop(columns=["tmt"], errors="ignore")
+_d = pd.to_datetime(carto["today_carto"], errors="coerce")
+carto["today_carto"] = to_stata_date(carto["today_carto"])
+carto["day_carto"] = _d.dt.day
+carto["month_carto"] = _d.dt.month.where(_d.dt.month.between(4, 12))
+ 
+# ------------------------------------------------ Repertoire (tax roll)
+taxroll = read_csv("taxroll_noPII.csv")
+pat = re.compile(r"^([^0-9]*)([0-9]+)([^0-9]*)$")
+taxroll["bonus_FC"] = clean_str(taxroll["Bonus"]).map(
+    lambda s: (m.group(2) if (m := pat.match(s)) else ""))
+ 
+# ------------------------------------------------ Monitoring (midline)
+mid = read_optional("midline_noPII.dta")
+job_labels: dict[int, str] = {}
+if mid is None:
+    mid = read_optional("midline_noPII.csv")
+else:
+    with pd.io.stata.StataReader(DATA_DIR / "midline_noPII.dta") as rdr:
+        vl = rdr.value_labels()
+        lblname = rdr._lbllist[rdr._varlist.index("job")] if "job" in rdr._varlist else None
+        job_labels = vl.get(lblname, {}) if lblname else {}
+ 
+if mid is not None:
+    mid = mid.drop(columns=["tmt", "pilot"], errors="ignore").rename(
+        columns={"compound": "compound1", "today": "today_monitoring", "exempt": "exempt_monitoring"})
+    pc = mid["possible_compound"]
+    mid.loc[pc.isin([0, 999999, 9999999]), "possible_compound"] = np.nan
+    guess = (mid["compound1"] == 999999) & mid["possible_compound"].notna()
+    mid["compound_guess"] = guess.astype(int)
+    mid.loc[guess, "compound1"] = mid.loc[guess, "possible_compound"]
+    mid = mid[(mid["compound1"] != 999999) & mid["compound1"].notna()]
+    # keep the completed survey when compound code is duplicated
+    mx = mid.groupby("compound1")["tot_complete"].transform("max")
+    mid = mid[(mid["tot_complete"] == mx) | (mid["tot_complete"].isna() & mx.isna())]
+    # remaining duplicates: keep the last one by start/end time
+    mid = mid.sort_values(["compound1", "start", "end"], kind="stable")
+    mid = mid.groupby("compound1", sort=False).tail(1)
+    if "today_monitoring" in mid:
+        mid["today_monitoring"] = to_stata_date(mid["today_monitoring"])
+ 
+# ------------------------------------------------ Tax payments (TDM receipts)
+tdm = read_csv("tax_payments_noPII.csv").drop(columns=["_merge"], errors="ignore")
+tdm = tdm.rename(columns={"date": "date_TDM", "colcode": "colcode_TDM"})
+tdm = tdm[~((tdm["unmatched_compound"] == 1) | tdm["compound1"].isna())]
+_d = pd.to_datetime(tdm["date_TDM"], errors="coerce")
+tdm["date_TDM"] = to_stata_date(tdm["date_TDM"])
+tdm["day_tdm"] = _d.dt.day
+# NOTE: the do-file builds month_tdm from day_str_tdm (a typo for month_str_tdm),
+# so month_tdm is always missing in the original. Replicated as-is; unused later.
+tdm["month_tdm"] = np.nan
+ 
+# ==============================================================================
+# MERGE
+# ==============================================================================
+stratum = read_csv("stratum.csv")
+stratum = stratum[["a7"] + [c for c in stratum.columns if c.startswith("stratum")]]
+ 
+df = stata_merge(flier, stratum, "a7", "m:1").drop(columns="_merge")
+if chef is not None:
+    df = stata_merge(df, chef, "a7", "m:1").drop(columns="_merge")
+df = stata_merge(df, tmt16, "a7", "m:1").drop(columns="_merge")
+df = stata_merge(df, assign, "a7", "m:1").drop(columns="_merge")
+ 
+df = stata_merge(df, carto, "compound1", "1:1").rename(columns={"_merge": "_merge_flier_carto"})
+df = stata_merge(df, taxroll, "compound1", "1:1").rename(columns={"_merge": "_merge_flier_carto_rep"})
+ 
+if mid is not None:
+    df = stata_merge(df, mid, "compound1", "1:1")
+    df = df[df["_merge"] != 2]   # 51 codes in monitoring but not in carto
+else:
+    df["_merge"] = 1             # nobody matched to monitoring
+df = df.rename(columns={"_merge": "_merge_flier_carto_rep_monit"})
+ 
+df = stata_merge(df, tdm, "compound1", "m:1")
+ 
+# drop observations not in carto, repertoire or monitoring
+df = df[~((df["_merge_flier_carto"] == 1) & (df["_merge_flier_carto_rep"] == 1)
+          & (df["_merge_flier_carto_rep_monit"] == 1))].reset_index(drop=True)
+ 
+# Variables that come only from the monitoring survey: create empty if absent
+MID_VARS = ["code_same", "bribe", "bribe_amt", "bribe2a_amt", "bribe2b_amt", "bribe3_amt",
+            "visited", "visits", "revisits_dates", "exempt_monitoring", "sex_prop", "sex",
+            "age_prop", "age", "age_prop_guess", "job", "job_gov", "move_ave", "sanctions",
+            "pubgoods"]
+df = ensure_cols(df, MID_VARS)
+df = ensure_cols(df, ["tribe", "job_other", "exempt_other"], fill="")
+ 
+# ==============================================================================
+# DATA ISSUES (the `br` checks in the do-file)
+# ==============================================================================
+h1, h2 = df["house"] == 1, df["house"] == 2
+afr, amt, mmr = df["assign_flier_rate"], df["amountCF"], df["mm_rate"]
+print("rate assigned != rate carto (periph):",
+      ((afr != df["what_rate_periph"]) & df["what_rate_periph"].notna()).sum())
+df["rates_dont_match"] = (((h1 & (afr != amt) & amt.notna()) |
+                           (h2 & (mmr != amt) & amt.notna()))).astype(int)
+ 
+# ==============================================================================
+# VARIABLE CONSTRUCTION
+# ==============================================================================
+paid_tdm = df["_merge"] == 3
+underpaid = ((h1 & paid_tdm & (afr > amt) & amt.notna() & afr.notna()) |
+             (h2 & paid_tdm & (mmr > amt) & amt.notna() & mmr.notna()))
+ 
+# ---- Tax compliance dummy
+df["taxes_paid"] = 0
+df.loc[paid_tdm, "taxes_paid"] = 1
+df.loc[(df["taxes_paid"] == 0) & (df["code_same"] == 1), "taxes_paid"] = 1
+df.loc[underpaid, "taxes_paid"] = 0
+ 
+# ---- Bribe dummy
+b = pd.Series(np.nan, index=df.index)
+b[df["bribe"] == 0] = 0
+b[df["bribe"] == 1] = 1
+b[df["bribe2a_amt"].notna() & (df["bribe"] != 1)] = 1
+b[df["bribe2b_amt"].notna()] = 1
+b[df["bribe3_amt"].notna()] = 1
+b[underpaid] = 1
+v = df["visited"]
+b[((v != 1) & v.notna()) | ((v == 1) & b.isna())] = 0
+df["bribe_combined"] = b
+ 
+# ---- Bribe amounts
+ba = pd.Series(np.nan, index=df.index)
+for c in ["bribe_amt", "bribe2a_amt", "bribe2b_amt", "bribe3_amt"]:
+    ba = ba.mask(df[c].notna(), df[c])
+ba = ba.mask(underpaid, amt)
+df["bribe_combined_amt"] = ba
+df.loc[df["bribe_combined_amt"] == 0, "bribe_combined"] = 0
+df.loc[df["bribe_combined_amt"] == 0, "bribe_combined_amt"] = np.nan
+ 
+# ---- Visits by tax collectors (Stata: missing `visits` > 1 is TRUE)
+vis = df["visits"]
+vis12 = v.isin([1, 2])
+df["visit_post_carto"] = np.nan
+df.loc[v == 0, "visit_post_carto"] = 0
+df.loc[vis12 & vis.isin([0, 1]), "visit_post_carto"] = 0
+df.loc[vis12 & st_gt(vis, 1), "visit_post_carto"] = 1
+ 
+df["nb_visit_post_carto"] = np.nan
+df.loc[v == 0, "nb_visit_post_carto"] = 0
+df.loc[vis12 & vis.isin([0, 1]), "nb_visit_post_carto"] = 0
+m = vis12 & st_gt(vis, 1)
+df.loc[m, "nb_visit_post_carto"] = vis[m] - 1
+df.loc[vis == 99999, "nb_visit_post_carto"] = np.nan
+ 
+rv = df["revisits_dates"]
+df["rdv_chalk"] = np.nan
+df.loc[rv.notna() & (rv == 0), "rdv_chalk"] = 0
+df.loc[rv.notna() & (rv > 0), "rdv_chalk"] = 1
+df.loc[rv.notna() & (rv == 316037), "rdv_chalk"] = np.nan
+df["nb_rdv_chalk"] = np.nan
+df.loc[rv.notna() & (rv == 0), "nb_rdv_chalk"] = 0
+df.loc[rv.notna() & (rv > 0), "nb_rdv_chalk"] = rv
+df.loc[df["nb_rdv_chalk"] == 316037, "nb_rdv_chalk"] = np.nan
+ 
+# ---- Tax rate assignment
+for r in [1500, 2000, 2500, 3000]:              # Peripherie
+    df[f"r_{r}"] = np.where(h1, (afr == r).astype(float), np.nan)
+for r in [6600, 8800, 11000, 13200]:            # Maison moyenne
+    df[f"r_{r}"] = np.where(h2, (mmr == r).astype(float), np.nan)
+ 
+base = h1 | (h2 & mmr.notna())
+for pct, rp, rm in [(50, 1500, 6600), (66, 2000, 8800), (83, 2500, 11000), (100, 3000, 13200)]:
+    one = (h1 & (df[f"r_{rp}"] == 1)) | (h2 & (df[f"r_{rm}"] == 1) & mmr.notna())
+    df[f"pct_{pct}"] = np.where(base, one.astype(float), np.nan)
+ 
+df = df.drop(columns=["rate"], errors="ignore")
+df["rate"] = np.select([h1, h2], [afr, mmr], default=np.nan)
+df["taxes_paid_amt"] = df["taxes_paid"] * df["rate"]
+ 
+# ---- Tax collector compensation
+# NOTE: Stata's runiform() stream cannot be reproduced in numpy, so the random
+# 50/50 split of the 750 FC bonus (rate 2500) differs from the .dta draw.
+print(pd.crosstab(df["assign_flier_rate"], df["bonus_FC"]))
+rng = np.random.default_rng(12345999)
+bfc = clean_str(df["bonus_FC"])
+sel = (bfc == "750") & (afr == 2500)
+df["rand_bonus"] = np.where(sel, rng.uniform(size=len(df)), np.nan)
+med = np.nanmedian(df["rand_bonus"]) if sel.any() else np.nan
+df["rand_quantile"] = np.where(sel, np.where(df["rand_bonus"] <= med, 1, 2), np.nan)
+rq = df["rand_quantile"]
+ 
+df["bonus_constant"] = np.where(bfc != "", 0.0, np.nan)
+# `& rand_quantile` is TRUE for any non-zero value, including missing -> all 750 FC
+df.loc[bfc == "750", "bonus_constant"] = 1
+df.loc[rq == 1, "bonus_constant"] = 0
+df.loc[bfc == "2000", "bonus_constant"] = 1
+ 
+df["bonus_30pct"] = np.where(bfc != "", 0.0, np.nan)
+df.loc[bfc.isin(["450", "600", "900"]) | ((bfc == "750") & (rq == 1)), "bonus_30pct"] = 1
+ 
+# Tax collected during carto: fixed bonus. (Order replicated from the do-file:
+# bonus_FC is filled first, so the following bonus_constant lines never fire.)
+tp1 = df["taxes_paid"] == 1
+m1 = tp1 & h1 & (bfc == ""); bfc[m1] = "750"
+df.loc[tp1 & h1 & (bfc == ""), "bonus_constant"] = 1
+m2 = tp1 & h2 & (bfc == ""); bfc[m2] = "2000"
+df.loc[tp1 & h2 & (bfc == ""), "bonus_constant"] = 1
+df["bonus_FC"] = pd.to_numeric(bfc, errors="coerce")   # destring, force
+ 
+# ---- Neighbours' tax rates
+df = df.sort_values(["a7", "compound1"], kind="stable").reset_index(drop=True)
+g = df.groupby("a7", sort=False)
+for i in range(1, 11):
+    df[f"rate_nm{i}"] = g["rate"].shift(i)
+    df[f"rate_np{i}"] = g["rate"].shift(-i)
+ 
+afr_n, afr_p = g["assign_flier_rate"].shift(-1), g["assign_flier_rate"].shift(1)
+mm_n, mm_p = g["mm_rate"].shift(-1), g["mm_rate"].shift(1)
+h1, h2 = df["house"] == 1, df["house"] == 2
+s1 = h1 & st_eq(df["assign_flier_rate"], afr_n) & st_eq(df["assign_flier_rate"], afr_p)
+s2 = h2 & st_eq(df["mm_rate"], mm_n) & st_eq(df["mm_rate"], mm_p)
+df["stable_n3"] = np.where(s1 | s2, 1.0, np.nan)
+ 
+# ---- Date of cartography and date of payment
+df["taxes_paid_days_post_carto"] = df["date_TDM"] - df["today_carto"]
+print("TDM obs with missing date:", (df["date_TDM"].isna() & (df["_merge"] == 3)).sum())
+print("carto obs with missing date:", df["today_carto"].isna().sum(),
+      "| of which paid:", (df["today_carto"].isna() & (df["_merge"] == 3)).sum())
+print("payment before carto:", (df["taxes_paid_days_post_carto"] < 0).sum())
+df.loc[df["taxes_paid_days_post_carto"] < 0, "taxes_paid_days_post_carto"] = np.nan
+ 
+days = df["taxes_paid_days_post_carto"]
+tp = df["taxes_paid"]
+new_cols = {}
+for x in range(31):
+    col = pd.Series(np.nan, index=df.index)
+    col[tp == 0] = 0
+    col[(tp == 1) & (days <= x) & days.notna()] = 1
+    col[(tp == 1) & (days > x) & days.notna()] = 0
+    new_cols[f"taxes_paid_{x}d"] = col
+df = pd.concat([df, pd.DataFrame(new_cols)], axis=1)
+ 
+# ---- Exemption variable
+EXEMPT_TO_EXCLUDE = [
+    "Associations", "Bien de l'Etat", "CS", "Centre de santé", "Croix rouge", "De l’etat",
+    "Eglise et Ecole", "Etat", "Hopital", "Hôpital", "ME", "Maison d etat", "Maison de etat",
+    "Maison de l Etat", "Maison de l'Etat", "Maison de l'etat", "Maison de l'état",
+    "Maison de la SNCC", "Maison de état", "Maison etat", "Maison militaire", "Militaire",
+    "ONG", "Ong", "Organisme", "Orphelin", "Parcelle de l'Etat", "Une maison de l'église",
+    "Tous deux sont morts", "Tous décédé et il sont deul",
+]
+eo = clean_str(df["exempt_other"])
+df["exempt_to_exclude"] = np.where(eo.isin(EXEMPT_TO_EXCLUDE) | (df["exempt_monitoring"] == 1), 1.0, np.nan)
+ 
+# ==============================================================================
+# CLEANING COVARIATES - MONITORING
+# ==============================================================================
+# Gender of owner (0 = Female, 1 = male)
+df["sex_prop"] = df["sex_prop"].fillna(df["sex"])
+df.loc[df["sex_prop"] == 2, "sex_prop"] = 0
+ 
+# Age of owner. The do-file targets extended missing `.d` (don't know);
+# pandas reads all of Stata's . / .d / .n as NaN, so plain NaN is used here.
+df["age_prop"] = df["age_prop"].fillna(df["age"])
+AGE_GUESS = {1: 19, 2: 22.5, 3: 27.5, 4: 32.5, 5: 37.5, 6: 42.5, 7: 47.5, 8: 52.5, 9: 57.5,
+             10: 62.5, 11: 67.5, 12: 72.5, 13: 77.5, 14: 82.5, 15: 87.5, 16: 92.5,
+             17: 97.5, 18: 100}
+fill = df["age_prop_guess"].map(AGE_GUESS)
+df["age_prop"] = df["age_prop"].mask(df["age_prop"].isna() & fill.notna(), fill)
+ 
+# Tribe
+TRIBE_MISSING = ["NEVEUTPASDIRE", "LAPARCELLEDEL'éGLISE", "JENESAISPAS", "ILNEVEUTPASDIRE",
+                 "ILNEVEUTPAS", "I'LLNEVEUTPASDIRE", "ELLENEVEUTPASMEDIRE", "ELLENEVEUTPASDIRE",
+                 "ELLENEVEUTPAS", "ELLENEPASDIRE", "DOESN'TKNOW", "BELGE", ".", ".d", ".n",
+                 "9999", "99999", "999999", "9999999", "99999999"]
+tribe = clean_str(df["tribe"])
+tribe[tribe.isin(TRIBE_MISSING)] = ""
+df["tribe"] = tribe
+df["main_tribe"] = np.where(tribe != "", (tribe == "LULUWA").astype(float), np.nan)
+ 
+# Job: decode numeric code with its value label
+job_str = df["job"].map(job_labels) if job_labels else pd.Series("", index=df.index)
+job_str = clean_str(job_str)
+job_str[job_str == "DOESN'T KNOW"] = ""
+job_other = clean_str(df["job_other"])
+ 
+# Ordered recodes of job_other -> category. Each `foreach v of varlist job_str job_other`
+# block sets BOTH variables to the category, so later blocks see the recoded job_other.
+JOB_RECODES: list[tuple[str, list[str]]] = [
+    ("Unemployed-no work", ["Chomeur"]),
+    ("", [".", "0", "8888", "88888", "9999", "99999", "999999", "9999999"]),
+    ("", ["Dcd", "Deja mort", "Divorce", "Décédé", "Déjà", "Déjà  décédé", "Déjà décidé",
+          "Déjà décédé", "Déjà mort", "Elle est décédée depuis le mois d'octobre 2018",
+          "Elle vient de décédée", "Il est déjà  décédé", "Le propriétaire déjà décédé",
+          "Le propriétaire est déjà mort", "Son mari est déjà décédé", "Malade"]),
+    ("", ["Elle a peur de donner toute les reponses", "Elle ne pas dire", "Il ne veut pas dire",
+          "Il ne veux pas dire", "Ne veut pas dire", "Ne veut pas repondre"]),
+    ("", ["Acheter par eglise il ya 1 a 2 mois", "Accèlere", "La parcelle de l'église",
+          "Genre et famille", "Prisonnier"]),
+    ("Medical assistant", ["Medecin", "Medecin traditionnelle", "Infirmier", "Infirmières",
+                           "Pharmacien", "Munganga"]),
+    ("Lawyer", ["Avocat", "Majustrat"]),
+    ("Work for NGO", ["Agent caritas", "Agent catholique", "Agent du crs", "Caritas",
+                      "Crois rouge", "Croix rouge", "Crs", "Il travail dans une ONG",
+                      "Il travaille pour l'ong handicap", "Il travaille à la caritas",
+                      "Humanitaire", "Membre de la croix rouge et cultivateur",
+                      "Muena croix rouge", "Ong vision mondiale", "CPR", "Monusco",
+                      "Il travail à la monusco"]),
+    ("Driver (car and taxi moto)", ["Chauffeur", "Chauffeur mecanicien", "Taximan"]),
+    ("Chef coutumier", ["Chef coutumier", "Chef coutumier et président du CCRCC",
+                        "Chef de groupement", "Chef du groupement", "Chef du village"]),
+    ("Chef d'avenue", ["Chef d'avenues", "Chef de quartier", "Chef de secteur", "Chef quartier"]),
+    ("Military officer/soldier or police officer",
+     ["Plicier", "Police", "Policier", "Policiere", "Policiers", "Mpulushi",
+      "Élevé policier au centre de formation de Kamina", "Militaire", "Military",
+      "Sécurité civile à l'e.f.o", "Sécurité civile à l'fo"]),
+    ("Seller", ["Commerçant", "Commercant", "Commerce", "Commercent", "Commerçant ambulant",
+                "Commerçant mais qui voyage", "Commerçante", "Il fait le  petit commerce",
+                "Il fait le commerce", "Il fait le petit commerce", "Fait le petit commerce",
+                "Vendeur artistique", "Vendeuse"]),
+    ("Pensionnaire de l'état",
+     ["Retraité sncc", "Retraité ou pensionné", "Retraité de la fonction publique",
+      "Retraité de l'armée", "Retraité", "Retraiter a la sncc", "Retraiter", "Retraite",
+      "Penssionner", "Pensionné de la sncc", "Pensionné de la regideso", "Pensionné de l état",
+      "Pensionné de l Etat", "Pensionné d'Etat", "Pensionné", "Pensionner", "Pensionne d’etat",
+      "Pensionne d'Etat", "Pensionne", "Pension malade", "Pendionne d’etat",
+      "Pationné d'état sncc", "Pationné d'état office de route", "Pationné d'état SNCC",
+      "Pationné d'état INSS", "Pationné d'état Gecamine", "Pationné d'état (fonction publique)",
+      "Pationné d'état", "Pationné d'etat", "Pationné  d'état SNCC", "Passionné de l Etat",
+      "Journalier à la sncc", "Government personnel"]),
+    ("Government personnel",
+     ["Agent DGI", "Agent de l Snel", "Agent de l'ofida",
+      "Agent de l'état mais qui est resté à la maison pour éviter des conflits au bureau.",
+      "Agent de la DGI", "Agent de la DGM", "Agent de la RVA", "Agent de la DGRAD",
+      "Agent de laCENI", "Agent de la esnl", "Agent regideso", "Agent rtnc", "Agnt de l'etat",
+      "Anr", "CENI", "Conseiller au ministère provincial de transport", "DGRKOC", "Depute",
+      "Dgi", "Direcab", "Député", "Député Nationale", "Fonctinnaire", "Fonction publique",
+      "Fonctionnaire", "Fonctionnaire.", "Fonctiônnaire", "Honorable  député",
+      "Il est membre du cabinet du ministre provincial de la santé", "Il travail à la CENI",
+      "Il travaille à  dgi", "Pdg régit des eau", "R.V.A", "RVA", "Rva", "Regideso",
+      "Travail à l'anr", "Travailleur à l'ovd.", "Brougoumestre", "Brougoustre", "Sénateur",
+      "Muena mbulamatadi", "Office route"]),
+    ("Guard", ["Agent de sécurité  (société de gardiennage )", "Delta",
+               "Delta sécurité service de gardiennage", "Garde", "Gardien", "Gardiennage",
+               "Santinel", "Sentinnelle", "Service de gardiennage", "Société de sécurité privé",
+               "Mulami"]),
+    ("Bank", ["Agent de la banque", "Agent tmb", "Travail à la banc", "Travailleur à la banque."]),
+    ("Brasserie", ["Travailleur à la brasserie", " Travailleur à la brasseries",
+                   "Il travaille à la brasserie"]),
+]
+for cat, raw_values in JOB_RECODES:
+    for raw in raw_values:
+        m = job_other == raw
+        job_str[m] = cat
+        job_other[m] = cat
+ 
+job_str = job_str.mask(job_str == "", job_other)
+df["job_str"], df["job_other"] = job_str, job_other
+has_job = job_str != ""
+ 
+df["employed"] = np.where(has_job, (~job_str.isin(["Unemployed-no work", "Pensionnaire de l'état"])).astype(float), np.nan)
+ 
+SALARIED_CATS = ["Medical assistant", "Lawyer", "Teacher", "Military officer/soldier or police officer",
+                 "Government personnel", "Professor", "Guard", "Work for NGO", "SNCC", "Bank", "Brasserie"]
+SALARIED_OTHER = ["Il travail chez airtel", "Il travail chez les prêtres", "Il travail chez vodacom",
+                  "Il travaille chez airtel"]
+sal = np.where(has_job, 0.0, np.nan)
+sal[(df["job"].isin([1, 2, 9, 15, 17, 20, 21, 22, 28]) | job_str.isin(SALARIED_CATS)
+     | job_other.isin(SALARIED_OTHER)).to_numpy()] = 1
+df["salaried"] = sal
+ 
+wg = np.where(has_job, 0.0, np.nan)
+wg[(df["job"].isin([15, 17, 28]) | job_str.isin(
+    ["Military officer/soldier or police officer", "Government personnel", "SNCC"])).to_numpy()] = 1
+df["work_gov"] = wg
+ 
+# relative works for govt (.d already NaN); owner in govt -> 1
+df.loc[df["work_gov"] == 1, "job_gov"] = 1
+# move_ave / sanctions / pubgoods: `replace x=. if x==.d` is a no-op after pandas import
+ 
+
+df.to_csv(OUT_DIR / "combined_data.csv.gz", index=False, compression="gzip")
+print("combined_data:", df.shape)
+ 
+# ==============================================================================
+# ANALYSIS DATASET FOR PAPER TABLES AND FIGURES
+# ==============================================================================
+a = df.drop(columns=["_merge"]).copy()
+ 
+a = a[a["house"] != 3]                         # drop villas
+a["mm"] = np.select([a["house"] == 1, a["house"] == 2], [0, 1], default=np.nan)
+a = a[a["pilot"] != 1]                          # drop pilot data
+a = a[~a["a7"].isin(PILOT_A7)]
+ 
+a["t_l"] = (a["tmt"] == 2).astype(int)    # Local
+a["t_c"] = (a["tmt"] == 1).astype(int)    # Central
+a["t_cli"] = (a["tmt"] == 3).astype(int)  # Central with Info
+a["t_cxl"] = (a["tmt"] == 4).astype(int)  # Central x Local
+a["taxes_paid_amt"] = a["taxes_paid"] * a["rate"]
+ 
+# Correct TDM date errors
+a.loc[a["date_TDM"] < td("2018-06-15"), "date_TDM"] = np.nan              # carto started 15 Jun
+a.loc[(a["tmt"] == 3) & (a["date_TDM"] < td("2018-07-16")), "date_TDM"] = np.nan  # CLI started 15 Jul
+ 
+# Missing carto date for an entire polygon: use "Zoom-in"'s last day of carto
+# (the do-file overwrites every obs in these polygons, not only missing ones)
+POLY_DATE = {112: "2018-11-28", 219: "2018-11-28", 224: "2018-11-29", 238: "2018-12-03",
+             327: "2018-12-06", 343: "2018-11-30", 356: "2018-11-30", 510: "2018-12-03",
+             512: "2018-12-03", 514: "2018-11-26", 533: "2018-11-28", 538: "2018-11-29",
+             544: "2018-11-29", 588: "2018-11-27", 596: "2018-11-29", 658: "2018-11-27",
+             664: "2018-11-28", 669: "2018-12-01", 678: "2018-11-29"}
+for poly, d in POLY_DATE.items():
+    a.loc[a["a7"] == poly, "today_carto"] = td(d)
+ 
+# Missing some obs in the polygon: borrow from neighbouring compound codes
+a = a.sort_values(["a7", "compound1"], kind="stable").reset_index(drop=True)
+a["a7_rank"] = a.groupby("a7").cumcount() + 1
+a["a7_max_rank"] = a.groupby("a7")["a7_rank"].transform("max")
+tc = a["today_carto"]
+same_next = a["a7"] == a["a7"].shift(-1)
+same_prev = a["a7"] == a["a7"].shift(1)
+a["today_carto_plus1"] = tc.shift(-1).where(same_next)
+a["today_carto_minus1"] = tc.shift(1).where(same_prev)
+ 
+def _fill(cond, src):
+    a.loc[cond, "today_carto"] = a.loc[cond, src]
+ 
+# conditions use the *un-grouped* previous/next row, as in the do-file
+tc = a["today_carto"]; prv, nxt = tc.shift(1), tc.shift(-1)
+_fill(tc.isna() & (prv == nxt) & prv.notna() & nxt.notna(), "today_carto_minus1")   # same
+tc = a["today_carto"]; prv, nxt = tc.shift(1), tc.shift(-1)
+diff = tc.isna() & (prv != nxt) & prv.notna() & nxt.notna()
+_fill(diff & (a["a7_rank"] == a["a7_max_rank"]), "today_carto_minus1")              # last in polygon
+tc = a["today_carto"]; prv, nxt = tc.shift(1), tc.shift(-1)
+diff = tc.isna() & (prv != nxt) & prv.notna() & nxt.notna()
+_fill(diff & (a["a7_rank"] != a["a7_max_rank"]), "today_carto_plus1")               # middle
+ 
+# Other observations
+miss = a["today_carto"].isna()
+a.loc[miss & (a["a7"] == 694) & a["compound1"].isin([694001, 694002, 694003, 694004]),
+      "today_carto"] = td("2018-11-05")
+OTHER = {204: "2018-08-09", 624: "2018-06-21", 694: "2018-11-06", 6104: "2018-08-08",
+         231: "2018-06-18", 300: "2018-06-16", 312: "2018-09-17", 313: "2018-06-15",
+         502: "2018-07-18", 507: "2018-08-08", 557: "2018-08-08", 563: "2018-06-25",
+         571: "2018-08-18", 577: "2018-08-08", 595: "2018-12-11", 597: "2018-07-19",
+         619: "2018-08-08", 635: "2018-08-08", 647: "2018-11-07", 701: "2018-09-07",
+         6103: "2018-11-06"}
+for poly, d in OTHER.items():
+    a.loc[a["today_carto"].isna() & (a["a7"] == poly), "today_carto"] = td(d)
+ 
+# Alternative date: (1) min TDM date in polygon, else (2) max carto date in polygon
+a["a7_min_today_TDM"] = a.groupby("a7")["date_TDM"].transform("min")
+a["a7_max_today_carto"] = a.groupby("a7")["today_carto"].transform("max")
+a["today_alt"] = a["a7_min_today_TDM"].fillna(a["a7_max_today_carto"])
+ 
+a = a[a["rate"].notna()].reset_index(drop=True)
+ 
+
+a.to_csv(OUT_DIR / "analysis_data.csv.gz", index=False, compression="gzip")
+print("analysis_data:", a.shape)
+ 
+nb = a[["a7", "a7_min_today_TDM", "a7_max_today_carto"]].drop_duplicates()
+nb.to_csv(OUT_DIR / "analysis_data_neighborhoods.csv", index=False)
+print("analysis_data_neighborhoods:", nb.shape)
+  
