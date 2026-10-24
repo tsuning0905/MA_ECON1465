@@ -1,0 +1,434 @@
+﻿variable,label,value_labels
+start,Start Time,
+end,End Time,
+today,Date of Survey,
+a7,G1-A7,
+a7b,G1-A7b,
+a7c,G1-A7c,
+a7_check,G1-A7_check,
+a7d,G1-A7d,
+return,Is this household in the return sample or in the new sample? ,0=No; 1=Yes
+which_pass,"WHAT PASS IS THIS IN THE POLYGON?
+
+WE DO A SECOND PASS ONLY IF DURING THE FIRST ",1=FIRST PASS; 2=SECOND PASS
+tour2_approve,DID MARIE SOPHIE OR PABLO APPROVE YOU TO BEGIN TOUR 2?,0=No; 1=Yes
+code,WRITE THE CODE OF THE REPEAT PARTICIPANT.,
+title_tmt,,
+title_grp,,
+street_check,Check that the street is the same using the picture taken in Survey 3. Is the st,0=No; 1=Yes
+age_r,,
+sex_r,,
+person_check2,Check that the respondent is the same using the picture taken in Survey 3. Did y,0=No; 1=Yes
+avail,IS THIS PERSON AVAILABLE TO DO THE SURVEY NOW?,0=No; 1=Yes
+x4,Did you make an appointment for later?,0=No; 1=Yes
+x5,G2-G4-X5,
+x6,Why did you not make an appointment?,
+s1_prop_check,VERIFIEZ QUE CETTE PERSONNE EST LE PROPRIETAIRE OU LE MEMBRE DE SA FAMILLE QUI E,0=No; 1=Yes
+visit,C'EST QUELLE VISITE? C'EST-A-DIRE: AUJOURD'HUI C'EST LE X-IEME VISITE QUE VOUS A,
+avail_b,IS THIS PERSON AVAILABLE TO DO THE SURVEY NOW?,0=No; 1=Yes
+x4_b,Did you make an appointment for later?,0=No; 1=Yes
+x5_b,G5-X5_b,
+x6_b,Why did you not make an appointment?,
+hh_head_present,IS THE HOUSEHOLD HEAD HERE / AVAILABLE TO RECEIVE THE INFORMATION ABOUT THE TITL,0=No; 1=Yes
+identity_check_head,"DID THE ORIGINAL RESPONDENT
+
+Nom: 
+Age: 
+Sexe: 
+
+CONFIRMED THE IDENTITY OF THE C",0=No; 1=Yes
+sex_head,SELECT THE SEX OF THE HOUSEHOLD HEAD,1=Male; 2=Female
+age_head,How old were you at your last birthday?,
+appt_head1,Did you make an appointment for later with the household head?,0=No; 1=Yes
+appt_head2,What day and time is the appointment?,
+no_appt_head1,Why did you not make an appointment?,1=The chef de famille is out of town for a long period; 2=The respondent does not know the household head's phone number; 3=The chef de famille does not have a phone; 4=The chef de famille does not pick up the phone; 5=Other reason
+no_appt_head2,WRITE THE REASON,
+campaign2,"Now, I would like to play a video of the Conservateur des Titres immobiliers tha",0=No; 1=Yes
+campaign3,PLAY THE VIDEO,
+documents0_other,"Do you have any titles/documents concerning ownership of the compound? if so, wh",
+documents_other,I am gonna mention a list of documents. Please tell me if you or a family member,
+documents_dk,Is there another member of your household who might know if your household has a,0=No; 1=Yes
+visit_interest,Would you be interested in receiving a visit from this program?,0=NO; 1=YES; 2=HE/SHE HAS TO CHECK WITH SOMEONE ELSE
+novisit_why,Why are you not interested in obtaining an offical title for this compound? ,
+novisit_why_other,Why are you not interested in obtaining an offical title for this compound?  (Ot,
+rand,,
+p_acte_a,,
+p_acte_b,,
+p_acte_c,,
+p_contrat_a,,
+p_contrat_b,,
+p_contrat_c,,
+p_ce_a,,
+p_ce_b,,
+p_ce_c,,
+p_prop_a,,
+p_prop_b,,
+p_prop_c,,
+visit_next_c,G15-visit_next_C,
+campaign_visit,campaign_visit,
+campaign_doc,,1=Acte de vente (notarié); 2=Contrat de location; 3=Certificat d'enregistrement; 4=Aucun; 8888=DK/UNDECIDED/DECISION MAKER ABSENT
+campaign_no,Why do you not want to obtain an official document/title during this campaign? ,1=IT'S TOO EXPENSIVE; 2=THE PROCEDURE WOULD TAKE TOO LONG / WOULD BE A HASSLE; 3=NOT PLANNING TO STAY ON THIS COMPOUND FOR LONG; 4=ALREADY HAVE ENOUGH OFFICAL DOCUMENTS OR TITLES; 5=OTHER REASON
+reasons_why_no_title,WRITE THE REASON,
+campaign_yes_meeting1,Do you want to book an appoitment for the next visit? ,0=No; 1=Yes
+campaign_yes_meeting3_day,SELECTIONNEZ LA DATE DU RENDEZ-VOUS.,"1=Lundi, Aout 21; 2=Mercredi, Aout 23; 3=Vendredi, Aout 25; 4=Samedi, Aout 26; 5=Lundi, Aout 28; 6=Mercredi, Aout 30; 7=Vendredi, Septembre 1; 8=Samedi, Septembre 2; 9=Lundi, Septembre 4; 10=Mercredi, Septembre 6; 11=Vendredi, Septembre 8; 12=Samedi, Septembre 9; 13=Lundi, Septembre 11; 14=Mercredi, Septembre 13; 15=Vendredi, Septembre 15; 16=Samedi, Septembre 16; 17=Lundi, Septembre 18; 18=Mercredi, Septembre 20; 19=Vendredi, Septembre 22; 20=Samedi, Septembre 23; 21=Lundi, Septembre 25; 22=Mercredi, Septembre 27; 23=Vendredi, Septembre 29; 24=Samedi, Septembre 30; 25=Lundi, Octobre 2; 26=Mercredi, Octobre 4; 27=Vendredi, Octobre 6; 28=Samedi, Octobre 7; 29=Lundi, Octobre 9; 30=Mercredi, Octobre 11; 31=Vendredi, Octobre 13; 32=Samedi, Octobre 14; 33=Lundi, Octobre 16; 34=Mercredi, Octobre 18; 35=Vendredi, Octobre 20; 36=Samedi, Octobre 21; 37=Lundi, Octobre 23; 38=Mercredi, Octobre 25; 39=Vendredi, Octobre 27; 40=Samedi, Octobre 28; 41=Lundi, Octobre 30; 42=Mercredi, Novembre 1; 43=Vendredi, Novembre 3; 44=Samedi, Novembre 4; 45=Lundi, Novembre 6; 46=Mercredi, Novembre 8; 47=Vendredi, Novembre 10; 48=Samedi, Novembre 11; 49=Lundi, Novembre 13; 50=Mercredi, Novembre 15; 51=Vendredi, Novembre 17; 52=Samedi, Novembre 18; 53=Lundi, Novembre 20; 54=Mercredi, Novembre 22; 55=Vendredi, Novembre 24; 56=Samedi, Novembre 25; 57=Lundi, Novembre 27; 58=Mercredi, Novembre 29; 59=Vendredi, Decembre 1; 60=Samedi, Decembre 2; 61=Lundi, Decembre 4; 62=Mercredi, Decembre 6; 63=Vendred, Decembre 8 ; 64=Samedi, Decembre 9; 65=Lundi, Decembre 11; 66=Mercredi, Decembre 13; 67=Vendredi, Decembre 15; 68=Samedi, Decembre 16; 69=Lundi, Decembre 18; 70=Mercredi, Decembre 20; 71=Vendredi, Decembre 22; 72=Samedi, Decembre 23; 73=Lundi, Decembre 25; 74=Mercredi, Decembre 27; 75=Vendredi, Decembre 29; 76=Samedi, Decembre 30; 77=Lundi, Janvier 1; 78=Mercredi, Janvier 3; 79=Vendredi Janvier 5; 80=Samedi, Janvier 6 ; 81=Lundi, Janvier 8; 82=Mercredi, Janvier 10 ; 83=Vendredi, Janvier 12; 84=Samedi, Janvier 13; 85=Lundi, Janvier 15; 86=Mercredi, Janvier 17; 87=Vendredi, Janvier 19; 88=Samedi, Janvier 20; 89=Lundi, Janvier 22; 90=Mercredi, Janvier 24; 91=Vendredi, Janvier 26; 92=Samedi, Janvier 27; 93=Lundi, Janvier 29; 94=Mercredi, Janvier 31; 95=Vendredi, Fevrier 2; 96=Samedi, Fevrier 3; 97=Lundi, Fevrier 5; 98=Mercredi, Fevrier 7; 99=Vendredi, Fevrier 9; 100=Samedi, Fevrier 10; 101=Lundi, Fevrier 12; 102=Mercredi, Fevrier 14; 103=Vendredi, Fevrier 16; 104=Samedi, Fevrier 17; 105=Lundi, Fevrier 19; 106=Mercredi, Fevrier 21; 107=Vendredi, Fevrier 23; 108=Samedi, Fevrier 24; 109=Lundi, Fevrier 26; 110=Mercredi, Fevrier 28"
+campaign_yes_meeting3_time,SELECTIONNEZ L'HEURE DU RENDEZ-VOUS,1= 9:00 AM; 2=11:00 AM; 3=13:00PM; 4=15:00 PM
+consent6,"Now that I have answered all of your questions, may I ask you to participate in ",0=No - I refused to do the survey now and later ; 1=Yes - I am available now ; 2=Yes - But I am not available now
+appt_date,OK. FIX A RENDEZVOUS WITH THE HEAD OF THE HOUSEHOLD OR HIS WIFE TO DO THE SURVEY,
+appt_time,SELECT THE TIME OF THE RENDEZVOUS. ,
+appt_note,WRITE A NOTE TO REMIND YOURSELF HOW TO FIND THIS PARCELLE NEXT TIME.,
+status,"Are you the owner of this compound, or do you rent?",1=Property owner; 2=Renter; 3=member of the renter's family 
+sex,SELECT THE SEX OF THE INTERVIEWEE.,1=Male; 2=Female
+age,How old were you at your last birthday?,
+edu,What is the highest level of school you have reached?,0=Never been to school; 1=Kindergarten; 2=Primary; 3=Secondary; 4=University; 8888=HE/SHE DOESN'T KNOW
+edu2,What is the last class reached in that level?,0=0 (didn't complete a class); 1=1; 2=2; 3=3; 4=4; 5=5; 6=6; 7=>6
+job1,What type of work do you do now?,0=Unemployed-no work; 1=Medical assistant; 2=Lawyer; 3=Cart pusher; 4=Handyman; 5=Driver (car and taxi moto); 6=Tailor; 7=Diamond digger; 8=Farmer; 9=Teacher; 10=Gardner; 11=Mason; 12=Mechanic; 13=Carpenter; 14=Muyanda; 15=Military officer/soldier or police officer; 16=Fisherman; 17=Government personnel; 18=Pastor; 19=Porter; 20=Professor; 21=Guard; 22=Work for NGO; 23=Seller (in market); 24=Seller (in a store); 25=Seller (at home); 27=Student; 28=SNCC
+job1_other,What type of work do you do now? (Other),
+job2,What type of work does your husband do now?,0=Unemployed-no work; 1=Medical assistant; 2=Lawyer; 3=Cart pusher; 4=Handyman; 5=Driver (car and taxi moto); 6=Tailor; 7=Diamond digger; 8=Farmer; 9=Teacher; 10=Gardner; 11=Mason; 12=Mechanic; 13=Carpenter; 14=Muyanda; 15=Military officer/soldier or police officer; 16=Fisherman; 17=Government personnel; 18=Pastor; 19=Porter; 20=Professor; 21=Guard; 22=Work for NGO; 23=Seller (in market); 24=Seller (in a store); 25=Seller (at home); 27=Student; 28=SNCC
+job2_other,What type of work does your husband do now? (Other),
+work_gov1,Do you work for the government in any capacity?,0=No; 1=Yes
+work_gov2_1,Please describe the job - Teacher,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_11,Please describe the job - political appointee,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_other,Please describe the job (Other),
+work_gov3,Does anyone else in your family work for the government in any capacity?,
+work_gov4_1,Please describe their job - Teacher,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_2,Please describe their job - Military/Police,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_3,Please describe their job - Construction/Maintenance of infrastructure,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_4,Please describe their job - Lawyer,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_5,Please describe their job - Doctor/Nurse/Lab Tech,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_6,Please describe their job - Secretary,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_7,Please describe their job - Driver,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_8,Please describe their job - Functionary,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_9,"Please describe their job - Local chief (avenue, quartier)",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_10,Please describe their job - SNCC,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_11,Please describe their job - political appointee,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov4_other,Please describe their job (Other),
+tribe_new,What is your tribe?,
+tribe_o_new,Write the name of the other tribe,
+subtribe,What is your subtribe?,1=Ba Piang; 2=Babindi ba nkusu (Muetshi); 3=Babindi ba Tshibala (Kazumba); 4=Bangende; 5=Bangongo; 6=Bashi Biyeng; 7=Bashi Bushong; 8=Batua; 9=Bandjembe; 10=Bashi Basong; 11=Bashi Mapangu; 12=Bashi Mbang; 13=Bakua Kalonji; 14=Bakua Lukusa; 15=Bakua Mulumba; 16=Bena Bilonda; 17=Bena Kalambayi; 18=Bena Mulenga; 19=Bajila Kasanga; 20=Bakua Biayi; 21=Bakua Diyaya; 22=Bakua Kabunda; 23=Bakua Kasua; 24=Bakua Lule; 25=Bakua Mamba; 26=Bakua Meshi; 27=Bakua Mpika; 28=Bakua Muanza; 29=Bakua Ndolo; 30=Bakua Nkate; 31=Bakua Tshidimba; 32=Bakua Tshipamba; 33=Bakuakasanzu; 34=Bena Biyombo; 35=Bena Kabenga; 36=Bena Kabiya; 37=Bena Kadeibue; 38=Bena Kalamba; 39=Bena Kashiya; 40=Bena Katende; 41=Bena Kayembe; 42=Bena Kayenga; 43=Bena Mbala; 44=Bena Mfwamba; 45=Bena Muaba; 46=Bena Mutshipayi; 47=Bena Ngoji; 48=Bena Tshiadi; 49=Bimbadi; 50=Bakua Mpungu; 51=Bakua Tshisumba; 52=Bena Kanyinda; 53=Bena Kapuki; 54=Bena Koshi; 55=Bena Ngoyi; 56=Katakokombe; 57=Kole; 58=Lomela; 59=N'djele; 60=Ndovu; 61=Tshumbe; 63=Bajila Mpampi; 64=Bakua Beya; 65=Bakua Kunda; 66=Bakua Longo; 67=Bakua Mbayi; 68=Bakua Mushilu; 69=Bakua Ndaye; 70=Bakua Odia; 71=Bakua Tshishimbula; 72=Bena Kasasa; 73=Bena Mande; 74=Bena Mukangala; 75=Bena Tshikulu; 9999=Other
+subtribe_o,WRITE THE SUBTRIBE,
+kga_born,Have you always lived in Kananga?,0=No; 1=Yes
+kga_move,What year did you move to Kananga?,
+kga_mig1,Where did you move to that place from ?,1=Bandundu; 2=Bas-Congo; 3=Equateur; 4=Kasai Occidental; 5=Kasai Oriental; 6=Katanga; 7=Kinshasa; 8=Maniema; 9=Nord-Kivu; 10=Orientale; 11=Sud-Kivu; 12=Other Country; 8888=DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+kga_mig2,Where did you move to that place from ?,
+ave_born,Have you always lived on this avenue?,0=No; 1=Yes
+ave_move,When did you move to this avenue?,
+kga_mig3,what is your territory of origin? ,1=Bandundu; 2=Bas-Congo; 3=Equateur; 4=Kasai Occidental; 5=Kasai Oriental; 6=Katanga; 7=Kinshasa; 8=Maniema; 9=Nord-Kivu; 10=Orientale; 11=Sud-Kivu; 12=Other Country; 8888=DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+kga_mig4,what is your territory of origin? ,
+elect1,Do you have any source of electricity at your home?,0=No; 1=Yes
+elect3,SNEL/electric grid,0=No; 1=Yes
+elect4,Diesel generator,0=No; 1=Yes
+elect5,Roof/large solar panel,0=No; 1=Yes
+elect6_new,Is there another source you use?,
+elect8,Do you get electricity from your neighbor?,0=No; 1=Yes
+elect9,Does this neighbor gets his electricity from SNEL? ,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+inc_mo,What was the household’s total earnings this past month?,
+transport,How much money have you spent on transport in the past seven days,
+possessions_1,What possessions do you own? - Une moto,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_2,What possessions do you own? - Une voiture ou un camion,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_3,What possessions do you own? - Radio,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_4,What possessions do you own? - Television,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_5,What possessions do you own? - Electric generator,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_6,What possessions do you own? - Sewing machine,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_0,What possessions do you own? - None,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+hh_size,How many people live in this household?,
+renters_b,How many tenants do you have in this compound?,
+bornes,Do you have bornes for this compound? ,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+bornes_nb,How many bornes are there on this compound?,
+bornes_check,DO YOU THINK THIS PERSON IS LYING OR TELLING THE TRUTH ABOUT THE BORNES?,0=CETTE PERSONNE MENT; 1=CETTE PERSONNE DIT LA VERITE
+secur,How many times has a member of your household had a dispute about the ownership ,
+documents_1,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_2,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_3,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_4,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_5,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_6,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_7,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_8,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_0,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_8888,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents_9999,I am gonna mention a list of documents. Please tell me if you or a family member,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+parquet,Imagine that sometime in the future you have a dispute with a neighbor over the ,1=Not confident; 2=Somewhat confident; 3=Confident; 4=Very confident
+formal_benef1,Travel outside Kananga for a long time ? ,1=They fear a lot; 2=They fear ; 3=The fear  a little ; 4=They don't fear at all
+formal_benef2,Invest in their compound? ,1=They fear a lot; 2=They fear ; 3=The fear  a little ; 4=They don't fear at all
+formal_benef3,Get help from the government in the case of a property dispute,1=They fear a lot; 2=They fear ; 3=The fear  a little ; 4=They don't fear at all
+jealous,Imagine a man possesses an official land document/title. How much envious of his,1=A lot of envy; 2=Envy; 3=A little jealousy; 4=No jealousy at all
+number,G30-number,1=Very interested; 2=Interested ; 3=A little bit interested; 4=Not at all interested; 5=already have a numéro parcellaire 
+spend1_a,How many times did you receive health care/medicine from public medical structur,
+spend1_b,How many times did you receive health care/medicine from private medical structu,
+spend2,How many times did you receive health care/medicine from private pharmacies/stor,
+spend3,How many times did you receive health care/medicine from traditional doctors?,
+wed_fun,In the past six months how much did your household give to others for weddings a,
+church,In the past thirty days how much money  have you given to your church ? ,
+ristourne,Do any of the members of your household participate in a ROSCA?,0=No; 1=Yes
+social1,"Imagine that one day you need to borrow 20,000 FC. Who would you go to for this?",
+social2,Now think about the people with whom you often go to church. Please list the nam,
+formal3,Driver's license,0=No; 1=Yes
+formal4,Written work contract,0=No; 1=Yes
+formal5,Acte de naissance,0=No; 1=Yes
+formal6,Patente commerciale,0=No; 1=Yes
+bus1,Do you own a business in Kananga?,0=No; 1=Yes
+bus2,Do you have an official business permit? ,0=No; 1=Yes
+mutuality,Is anyone from your house a member of your mutualité?,0=No; 1=Yes
+civic7,"In the past month, did someone from your house contribute to a public good proje",0=No; 1=Yes
+civic8_1,What type of public goods project was this? - Road building,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_2,What type of public goods project was this? - Bridge building,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_3,What type of public goods project was this? - 3,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_4,What type of public goods project was this? - Water source improvement,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_5,What type of public goods project was this? - Clearing roads after storm,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_6,What type of public goods project was this? - Fill ravines,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+civic8_other,What type of public goods project was this? (Other),
+security,In the past three months how many times has a member of your household participa,
+obedience,Imagine a your chef d'avenue asks several members of the community to help fill ,1=It is completely acceptable; 2=It is acceptable; 3=It is not acceptable; 4=It is not at all acceptable; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION
+reciprocity,Imagine a man named Badibanga asks his neighbor Tshimbalanga for $20 to help pay,1=It is acceptable; 2=It could be acceptable under some circumstances; 3=It is not acceptable; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION
+altruism,"Imagine a man named Kabeya receives 20,000 CF from an NGO. How much do you think",
+access1,Piped Water (exclusive access in your house),0=No; 1=Yes
+access2,Electricity,0=No; 1=Yes
+access3,Trash collection,0=No; 1=Yes
+access4,Sewage collection,0=No; 1=Yes
+access5,Public Transportation,0=No; 1=Yes
+access6,Paved Roads in your own street,0=No; 1=Yes
+access7,Public street lightning in your own street,0=No; 1=Yes
+access8,Health care,0=No; 1=Yes
+access9,Education,0=No; 1=Yes
+access10,A retirement fund (or pension),0=No; 1=Yes
+satisfied1,Piped Water (exclusive access in your house),1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied2,Electricity,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied3,Trash collection,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied4,Sewage collection,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied5,Public Transportation,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied6,Paved Roads in your own street,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied7,Public street lightning in your own street,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied8,Health care,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied9,Education,1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+satisfied10,A retirement fund (or pension),1=Completely not satisfied; 2=Not satsfied; 3=Satisfait; 4=Completely satisfied; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides1,Piped Water (exclusive access in your house),1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides2,Electricity,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides3,Trash collection,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides4,Sewage collection,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides5,Public Transportation,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides6,Paved Roads in your own street,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides7,Public street lightning in your own street,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides8,Health care,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides9,Education,1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provides10,A retirement fund (or pension),1=Government; 2=Private company / private provider; 3=Household do it themselves; 4=Nobody does it ; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+provide1,Schools,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide1_other_new,Schools (Other),
+provide1_other,Schools (Other),
+provide2,Water system/wells,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide2_other_new,Water system/wells (Other),
+provide2_other,Water system/wells (Other),
+provide3,Health care,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide3_other_new,Health care (Other),
+provide3_other,Health care (Other),
+provide4,Keeping people safe,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide4_other_new,Keeping people safe (Other),
+provide4_other,Keeping people safe (Other),
+provide5,Helping poor people,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide5_other_new,Helping poor people (Other),
+provide5_other,Helping poor people (Other),
+provide6,Economic development,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide6_other_new,Economic development (Other),
+provide6_other,Economic development (Other),
+provide7,Road maintenance,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide7_other_new,Road maintenance (Other),
+provide7_other,Road maintenance (Other),
+state_cap1,Imagine that many of the roads in central Kananga have been badly damamged due t,0=No; 1=Yes
+state_cap2,If the government did not end up fixing the streets that were damaged by bad wea,"1=It would only be due to lack of resources; 2=It is mostly due to lack of resources, but they are also unwilling; 3=It is mostly due to unwillingness to help, but they also lack resources; 4=It would only be due to a lack of government willingness to fix the issue"
+rand0,,
+pubgoods1,Point of view 2: Other people say that people should take more responsibility to,1=Agree strongly with statement 1; 2=Agree with statement 1; 3=Agree with statement 2; 4=Agree strongly with statement 2; 8888=HE/SHE DOESN'T KNOW; 9999=AGREE WITH NEITHER STATEMENT [DO NOT READ]
+pubgoods1_2,Point of view 2: Other people say the government should take more responsibility,1=Agree strongly with statement 2; 2=Agree with statement 2; 3=Agree with statement 1; 4=Agree strongly with statement 1; 8888=HE/SHE DOESN'T KNOW; 9999=AGREE WITH NEITHER STATEMENT [DO NOT READ]
+trust2,NGOs,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust8,Local leaders,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust4,The national government (in Kinshasa),1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust5,The provincial government,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust6,The tax ministry,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust7,Foreign research organizations,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+conflict1,Another neighbor,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+conflict2,Pastor,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+conflict3,le chef d'avenue,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+conflict4,le bourgmestre ou le chef de quartier,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+conflict5,the police or judicial system,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+conflict6,the feticheur or thunderman,0=Never; 1=Rarely; 2=Sometimes; 3=Every time
+participation1,Attended a community meeting ,0=No; 1=Yes
+participation2,"joined or participated in the meetings of a civic asociation, such as a club, a ",0=No; 1=Yes
+participation3,gone to a political party meeting,0=No; 1=Yes
+pol4,Did you vote in the 2011 national election?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+pol6,Have you ever been a member of a political party?,"0=No - I have never been a member; 1=Yes - I used to be a member, but am not anymore; 2=Yes - I am currently a member"
+pol10,Have you ever participated in a political protest of any kind?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+know1,"Do you know the name of the current governor of Kasai Central? If yes, what is i",1=He knows his full name ; 2=He knows part of his name; 3=He doesn't know his name; 4=He doesn't want to answer
+gov_resp,To what degree does the provincial government respond to the needs of your avenu,1=Not hard working; 2=Somewhat hard working; 3=Hard working; 4=Very hard working; 8888=DON'T KNOW; 9999=DON'T WANT TO SAY
+corr14_end,How would you rate the performance of the provincial government in Kananga?,1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+demand1,Pastor,
+demand2,Chef d'avenue,
+demand3,Bourgmestre or Chef de quartier,
+demand4,The deputy,
+demand5,The provincial government,
+demand2_b,"To the deputee did you raise a problem in the community, a problem affecting you",1=The community ; 2=Your household
+demand3_b,"To the deputee did you raise a problem in the community, a problem affecting you",1=The community ; 2=Your household
+demand4_b,"To the deputee did you raise a problem in the community, a problem affecting you",1=The community ; 2=Your household
+demand5_b,"To the provincial government did you raise a problem in the community, a problem",1=The community ; 2=Your household
+chef_int1,Now I would like to ask you about the person who helps manage salongo or other p,"1=CHEF D'AVENUE; 2=CHEF DE LOCALITE; 3=CHEF COUTUMIER; 4=CHEF DE QUARTIER (NE PAS CHOISIR, SAUF DANS LE CAS OU LA PERSONNE INSISTE QU'IL N'Y A NI CHEF D'AVENUE NI CHEF DE LOCALITE); 8888=NE SAIT PAS (NE PAS CHOISIR SAUF DANS LE CAS OU LA PERSONNE INSISTE QU'IL N'Y A PAS D'AUTRE CHEF)"
+chef,Are you this chief? ,0=No; 1=Yes
+chef0,Is the chef d'avenue a member of your family,0=No; 1=Yes
+chef1,"Do you know the name of your chef d'avenue? If yes, what is it? ",1=He knows his full name ; 2=He knows part of his name; 3=He doesn't know his name; 4=He doesn't want to answer
+chef2,Do you have the phone number of your chef d'avenue? ,1=He knows his phone number; 2=Someone in the house knows his phone nomber; 3=No one in the house knows his phone number; 4=He doesn't want to answer
+chef3,Do you attend the same church as your chef d'avenue?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+chef4,To what degree does the chef d'avenue respond to the needs of your avenue's inha,1=Not hard working; 2=Somewhat hard working; 3=Hard working; 4=Very hard working; 8888=DON'T KNOW; 9999=DON'T WANT TO SAY
+chef5,Have you ever paid the chef money for an impot? For example: property tax or ren,0=No; 1=Yes
+chef6,"In your opinion, how many of your neighbors will pay property tax if the chef d'",1=All of my neighbhors; 2=Most of my neighbors; 3=Some of my neighbors; 4=A few of my neighbors; 5=None of my neighbors; 8888=HE/SHE DOESN'T KNOW
+chef8,Road maintenance (salongo),0=Never; 1=seldomly; 2=Once every few months; 3=Once a month; 4=A couple of times a month; 5=Every week
+chef9,Plead to higher authorities on the behalf of the members of the avenue. ,0=Never; 1=Very often ; 2=Often ; 3=Sometimes; 4=Rarely
+chef11,Help finding a solution to a problem ,
+chef12,Helped a member of your family get a job,
+chef_eval,"Overall, how would you rate the performance of your chef d'avenue?",1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+chef_corr1,"In general, think of what chefs d'avenue do with the money that they collect? Im",
+chef_corr2,How much of this money will they put in their pockets? ,
+tax1,Have you heard of the DGRKOC?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tax2,"Please describe what they do. [AFTER THE PERSON SPEAKS, CHOOSE THE APPROPRIATE R",1=The respondent clearly knows the DGRKOC well; 2=The respondent knows the DGRKOC somewhat; 3=The respondent had heard of the DGRKOC but doesn't know what they do; 4=I doubt the person actually has heard of the DGRKOC 
+tax11,Have you heard of the property tax?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tax12,"According to you, how much does one pay for the property tax?",
+tax13,Have you ever paid the property tax?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tax15,To whom have you paid the property tax?,
+tax15_other,To whom have you paid the property tax? (Other),
+tax14,When did you last pay the property tax?,0=No; 1=Yes - and there were people at the house; 2=Yes - but there was no one in the compound
+paid2017_2,Did you receive a receipt the last time you paid the property tax?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+paid2017_3,Would you mind showing me the receipt you received?  This will help us check tha,0=No; 1=Yes
+paid2017_4_new,WHY DID THE PERSON REFUSE TO SHOW YOU THE RECEIPT.,
+paid2017_4_other_new,WHY DID THE PERSON REFUSE TO SHOW YOU THE RECEIPT. (Other),
+paid2017_5,IS THIS A VALID RECEIPT? ,0=No; 1=Yes
+paid2017_6_new,OBSERVATIONS:,
+paid2017_7,May I take a photo of the receipt?,0=No; 1=Yes
+paid2017_8,WHY DID THE PERSON REFUSE TO LET YOU PHOTOGRAPH THE RECEIPT?,1=HE WORRIED THAT HE WOULD HAVE PROBLEMS WITH THE GOVERNMENT / HAVE TO PAY AGAIN; 2=HE WORRIED THAT THIS WOULD AFFECT HIS ARRANGEMENT WITH THE TAX COLLECTOR OF THE DGRKOC; 3=REFUSAL - NO REASON GIVEN
+paid2017_8_other,WHY DID THE PERSON REFUSE TO LET YOU PHOTOGRAPH THE RECEIPT? (Other),
+paid2017_9_new,TAKE A PHOTO OF THE RECEIPT. MAKE SURE IT IS CLEAR.,
+tax17,"IN YOUR OPINION, DID THIS RESPONDENT ACTUALLY PAY THE PROPERTY TAX, OR WAS IT AN",1=I think the respondent actually paid the IF; 2=I think the respondent paid some other tax or fee; 3=I don't think the respondent actually paid a tax at all / I think he isn't telling the truth 
+tax18,"In your opinion, how many of your neighbors will pay property tax if the DGRKOC ",1=All of my neighbhors; 2=Most of my neighbors; 3=Some of my neighbors; 4=A few of my neighbors; 5=None of my neighbors; 8888=HE/SHE DOESN'T KNOW
+morale,"Now, imagine that next week a tax collector comes and visits one of your neighbo",1=It is acceptable; 2=It could be acceptable under some circumstances; 3=It is not acceptable; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION
+punish,"In this case, what is the probability that the government will pursue and enforc",1=He will definitely be pursued and punished; 2=He is very likely to be pursued and punished; 3=He is unlikely to be pursued and punished; 4=He is very unlikely to be pursued and punished
+tax27,Have you heard of the rental tax?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tax27c,"According to you, how much does one pay for the rental tax?","1=concession; 2=THE RESPONDENT KNOWS THAT YOU PAY 20% OF RENT, BUT DOES NOT KNOW THIS MONEY SHOULD BE RETAINED AT THE SOURCE; 3=THE RESPONDENT DOES NOT KNOW THAT YOU PAY 20%, BUT DOES KNOW THAT THE MONEY PAID SHOULD BE RETAINED AT THE SOURCE; 4=THE RESPONDENT DID NOT KNOW THAT YOU PAY 20% OF RENT, NOR DOES HE KNOW THAT THIS MONEY SHOULD BE RETAINED AT THE SOURCE"
+tax27c_other,"According to you, how much does one pay for the rental tax? (Other)",
+tax28,Have you ever paid the rental tax?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tax29,What year did you last pay the rental tax?,
+tax30,How did you pay the rental tax?,
+tax30_other,How did you pay the rental tax? (Other),
+tax32,"IN YOUR OPINION, DID THIS RESPONDENT ACTUALLY PAY THE RENTAL TAX, OR WAS IT ANOT",1=I think the respondent actually paid the IF; 2=I think the respondent paid some other tax or fee; 3=I don't think the respondent actually paid a tax at all / I think he isn't telling the truth 
+tax33,"In your opinion, how many of your neighbors have paid the rental tax?",1=All of my neighbhors; 2=Most of my neighbors; 3=Some of my neighbors; 4=A few of my neighbors; 5=None of my neighbors; 8888=HE/SHE DOESN'T KNOW
+corr7_end,"In general, think of what the tax collectors will do with the money they collect",
+corr8_end,How much of this money will they put in their pockets? ,
+tax42,How would you rate the performance of the tax ministry in Kananga?,1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+tax43,"Now, I would like to ask you if you think it is currently an obligation to pay I","1=It is an important obligation Everyone must pay; 2=It is an obligation, but only for those who benefit from government services ; 3=It is an obligation, but only for those who have the means to pay; 4=It is not an obligation The government should get its revenue from other sources"
+pay_gov1_2,What payments did you make in the past six months? - Land Tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_3,What payments did you make in the past six months? - Rental tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_5,What payments did you make in the past six months? - Income Tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_14,What payments did you make in the past six months? - Commercial authorizations,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_7,What payments did you make in the past six months? - Authorization for selling a,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_15,What payments did you make in the past six months? - Bike tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_10,What payments did you make in the past six months? - Toll Tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_1,What payments did you make in the past six months? - Vehicle Tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_17,What payments did you make in the past six months? - Assurance permit,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_6,What payments did you make in the past six months? - Transportation Tax,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_0,What payments did you make in the past six months? - None,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_4,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_8,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_11,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_12,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_13,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_16,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov2_0,Is there any other payments to government officials that you made in the past si,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+pay_gov1_other,What payments did you make in the past six months? (Other),
+pay_gov2_other,Is there any other payments to government officials that you made in the past si,
+pay_tot,How much do you think you paid in total to government officials in the past six ,
+o_pay2,"Now, I'd like to talk about small payments made to government officialssuch as s",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+o_pay3,"In the past twelve months, did you make any such payment? ",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+pay_tot2,Now please count up all the total such informal payments you made in the last 6 ,
+gov1_end,Now I would like to ask you what you think the provincial government will do wit,
+gov2_end,Diversion of funds and waste:,
+move1,Did a member of your family in Kananga move because of the insecurity in Kasai i,0=NO; 1=YES - DEPLACEMENT FROM KANANGA TO VILLAGE; 2=YES- DEPLACEMENT FROM THE VILLAGE TO KANANGA; 3=YES- DEPLACEMENT WITHIN KANANGA
+move2,DO YOU THINK THIS PERSON IS LYING OR TELLING THE TRUTH?,0=CETTE PERSONNE MENT; 1=CETTE PERSONNE DIT LA VERITE
+move3,How many of your neighbors moved because of the insecurity in Kasai in 2017?,1=All of my neighbhors; 2=Most of my neighbors; 3=Some of my neighbors; 4=A few of my neighbors; 5=None of my neighbors; 8888=HE/SHE DOESN'T KNOW; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION
+nsapu2,Has anyone living on your street been hurt or killed because of the conflict in ,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+metainstanceid,meta-instanceID,
+key,KEY,
+search,To deliver the information about the land titling campaign are you looking for t,0=The household head; 1=The respondent
+campaign_yes_meeting3,G15-G17-G23-campaign_yes_meeting3,
+photo_head,Take a photo of the household head.,
+road_qual,WHAT IS THE QUALITY OF THE ROAD JUST OUTSIDE THIS COMPOUND?,1=Paved and in good shape; 2=Paved and in bad shape; 3=Not-paved and in good shape; 4=Not-paved and in bad shape; 5=Catastrophic
+fence,"DOES THIS COMPOUND HAVE A FENCE? IF SO, SELECT THE TYPE OF FENCE. ",1=No Walls; 2=Bamboo Walls; 3=Brick Walls; 4=Ciment Walls
+walls_other,OBSERVE THE PRINCIPAL MATERIAL OF THE WALLS OF THE MAIN HOUSE. (Other),
+ravine,IS THIS COMPOUND THREATENED BY A RAVINE?,0=No; 1=Yes - Somewhat threatened; 2=Yes - Gravely threatened
+lang,What was the language of the interview?,1=French; 2=Tshiluba
+photo,Take a photo of the respondent.,
+hh_photo,TAKE A PICTURE OF THE MAIN HOUSE. BE SURE THAT THE PHOTO IS CLEAR. WE ARE GOING ,
+work_gov2_2,Please describe the job - Military/Police,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_3,Please describe the job - Construction/Maintenance of infrastructure,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_4,Please describe the job - Lawyer,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_5,Please describe the job - Doctor/Nurse/Lab Tech,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_6,Please describe the job - Secretary,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_7,Please describe the job - Driver,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_8,Please describe the job - Functionary,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_9,"Please describe the job - Local chief (avenue, quartier)",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+work_gov2_10,Please describe the job - SNCC,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_1,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_2,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_3,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_4,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_5,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_6,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_7,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_8,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_0,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_8888,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+documents0_9999,"Do you have any titles/documents concerning ownership of the compound? if so, wh",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+any_docs,Does the hh have at least one document concerning ownership of the compound?,0=No; 1=Yes
+erreur_frappe,,
+erreur_poly,,
+erreur_code,,
+tot_complete,,
+s3_poly,Location of interview - Polygon ID,
+temp_repeat,,
+missing_instance_flag,,
+tmp_code,,
+max_code_end,,
+trust_all,Total number of trusted organizations,
+poly_from_code,,
+erreur_poly_unresolved,,
+dup_code,,
+s1_chef_check,VERIFIEZ QUE CETTE PERSONNE EST LE CHEF DE FAMILLE OU SA FEMME. EST-CE CORRECT? ,0=No - other; 1=Yes - chef de famille; 2=No - femme de chef de famille
+tribe,What is your tribe?,
+tribe_o,Write the name of the other tribe,
+elect6,Is there another source you use?,
+paid2017_4,WHY DID THE PERSON REFUSE TO SHOW YOU THE RECEIPT.,"0=NEVER RECEIVED A RECEIPT; 1=LOST IT; 2=ANOTHER MEMBER OF THE HOUSEHOLD HAS IT; 3=HE HAS IT, BUT JUST DOESN'T WANT TO SHOW IT NO OTHER REASON GIVEN "
+paid2017_4_other,WHY DID THE PERSON REFUSE TO SHOW YOU THE RECEIPT. (Other),
+paid2017_9,TAKE A PHOTO OF THE RECEIPT. MAKE SURE IT IS CLEAR.,
+pay_gov,"In 2016, did you make any other formal or informal payments to the state? ",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+survey3,,0=Old Respondent; 1=New Respondent
+title_grp_label,,1=A; 2=B; 3=C
+intro3,Why are you not interested in obtaining an offical title?,
+intro5,"Given that you already have a title, why are you interested?",
+subtribe_o_new,WRITE THE SUBTRIBE,
+provide3_new,Who should provide - Health care,
+spend1,G15-spend1,
+visit_interest2,G6-G14-visit_interest2,
+possessions_7,What possessions do you own? - 7,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_8,What possessions do you own? - 8,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_9,What possessions do you own? - 9,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_10,What possessions do you own? - 10,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+possessions_11,What possessions do you own? - 11,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+round,,
+compound_code,ECRIVEZ LE CODE PARCELLAIRE,
+move_endline,DID THE RESPONDENT MOVE SINCE THE LAST SURVEY?,1=YES - WITHIN POLYGON; 2=YES - TO DIFFERENT POLYGON; 3=NO
+move_when_endline,WHEN DID THEY MOVE? ,
+compound_code2,ECRIVEZ LE CODE PARCELLAIRE,
+compound_code_prev,WHAT WAS PREV COMPOUND CODE? ,
+most_recent,,
+problem_flag1,Problematic Observations,10=Enum suspicious cases
+problem_flag2,Problematic Observations,10=Enum suspicious cases
+problem_flag3,Problematic Observations,10=Enum suspicious cases
+problem_flag4,Problematic Observations,10=Enum suspicious cases
+walls,OBSERVE THE PRINCIPAL MATERIAL OF THE WALLS OF THE MAIN HOUSE.,0=STICKS/PALM; 1=MUD BRICK - VERY BAD CONDITION; 2=MUD BRICK - BAD CONDITION; 3=MUD BRICK - GOOD CONDITION; 4=MUD BRICK - VERY GOOD CONDITION; 5=BRICKS; 6=CIMENT
+roof,OBSERVE THE PRINCIPAL MATERIAL OF THE ROOF. ,1=THATCH/STRAW; 2=MAT; 3=PALM/BAMBOOS; 4=LOG (PIECE OF WOODS); 5=CONCRETE; 6=TILE / SLATE ETERNIT; 7=IRON SHEET
+roof2,WHAT IS THE CONDITION OF THE ROOF?,1=Shiny metal (very new); 2=Somewhat new metal; 3=Rusted metal
+morale_old,AcceptableRefusePayment,
+possessions,,
+morale_final,,1=Acceptable; 2=Not acceptable

@@ -1,0 +1,32 @@
+﻿variable,label,value_labels
+start,Start Time,
+end,End Time,
+today,Date of Survey,
+a7,Lieu d'interview - Numéro de polygone,
+a7b,ECRIVEZ LE POLYGONE ENCORE UNE FOIS,
+who_chief,NOM DU CHEF,
+col_focus,"PENDANT LA DERNIERE SERIE DES PARCELLES, À QUEL POINT ÉTAIENT LES PERCEPTEURS AT",0=PAS ATTENTIF; 1=UN PEU ATTENTIF; 2=ATTENTIF; 3=TRES ATTENTIF
+chef_info_use,"PENDANT LA DERNIERE SERIE, A QUEL POINT EST-CE QUE LE CHEF A CONNU LES PARCELLES",0=IL NE LES CONNAIT PAS; 1=IL LES CONNAIT UN PEU; 2=IL LES CONNAIT; 3=IL LES CONNAIT TRES BIEN
+key,KEY,
+compound1,ECRIVEZ LE CODE DE LA PARCELLE ,
+polymult,,
+compound,,
+pay_ease,EST CE QUE LE PROPRIÉTAIRE A LES MOYENS ÉCONOMIQUES DE PAYER ? SÉLECTIONNER LA R,0=Diffilement; 1=Facilement; 2=Très facilement; 8888=Je ne sais pas
+willingness,EST CE QUE LE PROPRIÉTAIRE A LA VOLONTÉ DE PAYER ? SELECTIONNER LE JUGEMENT DU C,1=Pas du tout; 2=Un peu; 3=Beaucoup ; 8888=Je ne sais pas 
+convinced,CONVAINQUANT?,0=Non; 1=Oui
+key2,KEY,
+setofr,SET-OF-R,
+date,Date de l'interview,
+date_f,,
+type,type,
+short_label,short_label,
+value_label,,
+keep,,
+labelFrançais,label::Français,
+dup_code,,
+compound1_carto,,
+_erge,,1=master only (1); 2=using only (2); 3=matched (3); 4=missing updated (4); 5=nonmissing conflict (5)
+carto_complete,,
+skipped_code,,
+_merge,,1=master only (1); 2=using only (2); 3=matched (3); 4=missing updated (4); 5=nonmissing conflict (5)
+tot_complete_cc,,
