@@ -1,0 +1,307 @@
+variable,label,value_labels
+a7,G1-A7,
+compound,Number of compound,
+start,Start Time,
+end,End Time,
+today,Date of Survey,
+key,KEY,
+a7b,G1-A7b,
+a7c,G1-A7c,
+a7_check,G1-A7_check,
+a7d,G1-A7d,
+treatment,,
+month,,
+compound2,Number of compound,
+nocode,"Ask the people in this household why there is no code, and choose the appropriat",1=There was never a code here ; 2=The family erased the code; 3=The code was erased in the rain; 4=Neighbors / kids erased the code; 8888=HE/SHE DOESN'T KNOW
+possible_compound,"ACCORDING TO YOU, WHAT SHOULD THE NUMBER HAVE BEEN HAD IT NOT BEEN ERASED?",
+why_no_code,WRITE WHY YOU CANNOT EVEN ESTIMATE THE CODE,
+revisits_dates,HOW MANY SEPARATE DATES ARE WRITTEN IN CHALK NEXT TO THE CODE? ,
+date1,SELECT THE FIRST DATE WRITTEN ON THE WALL,
+date2,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date3,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date4,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date5,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date6,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date7,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date8,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date9,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+date10,SELECT THE NEXT DATE WRITTEN ON THE WALL,
+survey1,DID A MEMBER OF THIS PARCELLE PARTICIPATE IN SURVEY 1? ,0=No; 1=Yes
+survey1_code,WRITE THE CODE OF THE RESPONDENT FROM SURVEY 1.,
+survey1_resp_same,ARE YOU INTERVIEWING THE SAME RESPONDENT AS SURVEY 1? NAME: .,0=No; 1=Yes
+survey1_resp_diff,"YOU SHOULD FIND THE ORIGINAL SURVEY 1 RESPONDENT IF AT ALL POSSIBLE. 
+
+IF NOT, W",1=THE ORIGINAL RESPONDENT EST DEAD; 2=THE ORIGINAL RESPONDENT MOVED FROM KANANGA; 3=THE ORIGINAL RESPONDENT IS ON A TRIP LONGER THAN TWO WEEKS; 4=THE ORIGINAL RESPONDENT HAS REFUSED TO CONTINUE PARTICIPATION
+survey_chef,DID A MEMBER OF THIS PARCELLE PARTICIPATE IN THE CHEF SURVEY?,0=No; 1=Yes
+survey_chef_code,WRITE THE CODE OF THE RESPONDENT FROM CHEF SURVEY.,
+chef_resp_same,ARE YOU INTERVIEWING THE SAME RESPONDENT AS THE CHEF SURVEY? NAME: .,0=No; 1=Yes
+chef_resp_diff,"YOU SHOULD FIND THE CHEF IF POSSIBLE
+
+IF NOT, WHY ARE YOU INTERVIEWING ANOTHER P",1=THE ORIGINAL RESPONDENT EST DEAD; 2=THE ORIGINAL RESPONDENT MOVED FROM KANANGA; 3=THE ORIGINAL RESPONDENT IS ON A TRIP LONGER THAN TWO WEEKS; 4=THE ORIGINAL RESPONDENT HAS REFUSED TO CONTINUE PARTICIPATION
+compound_chef,DOES THIS COMPOUND BELONG TO THE CHEF DE LOCALITE WHO IS WORKING ON THE TAX CAMP,0=No; 1=Yes
+compound_assis,DOES THIS COMPOUND BELONG TO THE ASSISTANT OF THE CHEF DE LOCALITE WHO IS WORKIN,0=No; 1=Yes
+exempt,IS THIS A CHURCH OR STATE BUILDING THAT IS EXEMPTED?,0=No; 1=Yes
+first_attempt,IS THIS THE FIRST TIME YOU HAVE VISITED THIS COMPOUND FOR THE MONITORING SURVEY?,0=No; 1=Yes
+present,IS THERE AN ADULT FROM THE HOUSE OF THE PROPERTY OWNER WITH WHOM YOU CAN DO THE ,0=NO; 1=YES - PROPRIETAIRE; 2=YES - MEMBER OF PROPERTY OWNER'S FAMILY; 3=YES - LOCATAIRE RESPONSIBLE
+abandoned,"IN YOUR OPINION, IS THIS PARCELLE ABANDONED?",0=No; 1=Yes
+lang,What is the language of the interview?,1=French; 2=Tshiluba
+visited,Has your household been visited by a tax collector or another authority in 2018 ,0=No; 1=Yes - and there were people at the house; 2=Yes - but there was no one in the compound
+visits,"How many times did they come in total since June, including the visit to assign ",
+flier,Did your household receive a flier about this campaign?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+paid_self,"To date, has your household paid the property tax in 2018?",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+taxed_dk,Is there someone else here who might know if your household has paid?,0=No; 1=Yes
+paid_who,Whom did your household pay?,
+why_pay,"Among the following options, which was the most important reason why your househ",0=HE REFUSES TO GIVE ANY OF THESE ANSWERS; 1=Because if not I would have problems with the DGRKOC; 2=Because if not I would have problems with the chef de quartier/localité; 3=Because I wanted to contribute to the development of my neighborhood; 4=Because I wanted to contribute to the development of all Kananga; 5=Because it is a legal obligation
+why_pay_o,HE INSISTED ON WHAT OTHER REASON?,"0=Because it is a legal obligation; 1=Because it is their duty as citizens ; 2=Because they want to maintain a good reputation among friends and people in the neighborhood ; 3=Because they want to receive advantages and benefits from the government; 4=Because the tax collectors were bothering them, and they wanted to be left alone; 5=Because they want to maintain property rights over their land"
+pubgoods,"In your opinion, how much of the money collected in property taxes will be spent",0=None of it; 1=Some of it; 2=Most of it; 3=All of it; 8888=IL INSISTE QU'IL N'A AUCUNE IDEE
+sanctions,"In your opinion, do you think a public authority will pursue and enforce sanctio","0=No, they will definitely not sanction them ; 1=No, probably they will not sanction them ; 2=Yes, they will probably sanction them ; 3=Yes, they will definitely sanction them ; 8888=IL INSISTE QU'IL N'A AUCUNE IDEE"
+bribe_amt,How much did you pay?,
+whopay,"Did you pay them, or did another member of your household?",0=AUTRE MEMBRE DU MENAGE / PARCELLE; 1=MOI; 2=PROPRIETAIRE QUI HABITE AILLEURS
+whopay2,Which other member of your household paid?,1=Husband or wife (spouse) ; 2=Son or daughter ; 3=Brother or sister ; 4=Mother or father; 5=Niece or nephew ; 6=Grandchild; 7=Paternal Grandparent ; 8=Paternal Uncle or Aunt ; 9=Paternal cousin; 10=Brother in law / sister in law
+neighbor_know,Do you know how much the collectors asked your neighbors or friends to pay?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+num_500,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 500 FC,
+num_1000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 1000 FC,
+num_1500,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 1500 FC,
+num_2000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 2000 FC,
+num_2500,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 2500 FC,
+num_3000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 3000 FC,
+num_4000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 4000 FC,
+num_5000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 5000 FC,
+num_6000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 6000 FC,
+num_6600,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 6600 FC,
+num_7000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 7000 FC,
+num_8000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 8000 FC,
+num_8800,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 8800 FC,
+num_9000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 9000 FC,
+num_10000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 1000 FC,
+num_11000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 11000 FC,
+num_12000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 12000 FC,
+num_13000,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 13000 FC,
+num_13200,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER 13200 FC,
+num_9999,NOMBRE DE VOISINS/AMIS QUI DEVAIENT PAYER PLUS QUE 13200 FC,
+rand_neighbor,random number determining if the question neighbor_know2 is asked,
+neighbor_know2,"Do you have any sense if it was the same, more, or less than what they asked you",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+num_less,NUMBER WHO PAID LESS,
+num_same,NUMBER WHO PAID SAME,
+num_more,NUMBER WHO PAID MORE,
+rand_discount,,
+discount_know,Have you heard of anyone receiving an official reduction in the amount they were,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+discount_self,Did you receive a reduction?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+salongo,Did someone from your household participate in Salongo in the past two weeks?,0=No; 1=Yes
+salongo_hours,For how many hours did they participate in Salongo,
+sex_prop,Is the owner a man or a woman? ,1=Male; 2=Female; 8888=HE/SHE DOESN'T KNOW
+age_prop,How old is the owner?,
+age_prop_guess,Please estimate the owner's age. ,1=18-20 years old; 2=20-25 years old; 3=25-30 years old; 4=30-35 years old; 5=35-40 years old; 6=40-45 years old; 7=45-50 years old; 8=50-55 years old; 9=55-60 years old; 10=60-65 yearsold; 11=65-70 years old; 12=70-75 years old; 13=75-80 years old; 14=80-85 years old; 15=85-90 years old; 16=90-95 years old; 17=95-100 years old; 18=more than 100 years old; 19=he really don't know
+whopay3,Is the person who paid available for a short survey?,"1=Yes; 2=No - but an adult who was present during the transaction is available right now to answer questions; 3=Non - the payer was a minor, so I'm doing the survey with another adult in his place; 4=Non - member of the family"
+whopay3c,WHAT IS THE RELATION BETWEEN THE PERSON WITH WHOM YOU ARE DOING THE SURVEY AND T,1=Husband or wife (spouse) ; 2=Son or daughter ; 3=Brother or sister ; 4=Mother or father; 5=Niece or nephew ; 6=Grandchild; 7=Paternal Grandparent ; 8=Paternal Uncle or Aunt ; 9=Paternal cousin; 10=Brother in law / sister in law
+exempt_not,"ACCORDING TO YOU (THE ENUMERATOR), SHOULD THIS PERSON HAVE BEEN EXEMPTED? ",0=No - not exempt; 1=Elderly; 2=State pension; 3=Handicapped; 4=Widow; 5=Orphanage; 6=Convent; 7=Church; 8=School
+tot_complete_short,,
+sample_select,,
+long_select,,
+nocode_rand,,
+nocode_select,,
+paid_rand,,
+paid_select,,
+status,"Are you the owner of this house, or do you rent?",1=Property owner (or member of his family); 2=Renter
+crieur,Did you hear the cry-er using the megaphone in your neighborhood to inform peopl,0=No; 1=Yes
+col_type_fr,"Was it the DGRKOC agents, the locality chief (or his deputy), or both who visite",
+col_type_tsh,"Was it the DGRKOC agents, the locality chief (or his deputy), or both who visite",
+chef_type,Which chefs visited you for this property tax campaign?,
+visits_other1a,"Aside from their visits to your compound, have you spoken with a DGRKOC tax coll",0=No; 1=Yes
+visits_other1b,How many times did you speak with them about the property tax in total?,
+visits_other2a,Have you spoken with a DGRKOC tax collector or the chef de localité (and/or his ,0=No; 1=Yes
+visits_other2b,How many times did you speak with them about the property tax in total?,
+know_col,The collectors who came to your house this year to collect IF/IRL --- did you kn,0=No; 1=Yes
+know_how,How did you know them?,
+vis12,PROPERTY TAX:,
+paid_amt,"If you are comfortable with it, can I also ask you the amount you paid?",
+paid_nb,COMMENTAIRES:,
+receipt,Did the tax collector give you a receipt?,0=No; 1=Yes
+no_receipt,Why did he not give you a receipt?,"1=I didn't ask for a receipt; 2=Agent refused to give me a receipt; 3=The agent said for a receipt I would have to pay more than what I paid ; 4=Device was out of power; 5=Device was broken; 6=I paid an advance, for which the collector said I would not get a receipt "
+receipt_type,"Was the receipt printed by a portable printer, or handwritten?",1=Printed receipt - printed on the spot; 2=Printed receipt - printed before the collect arrived; 3=Handwritten receipt; 8888=HE/SHE DOESN'T KNOW
+receipt_later,"To date, did the collector ever come back to collect the rest of the money? ",0=No; 1=Yes
+receipt_show,Would you mind showing me the receipt you received?  This will help us check tha,0=No; 1=Yes
+receipt_noshow,WHY DID THE PERSON REFUSE TO SHOW YOU THE RECEIPT.,"1=LOST IT; 2=ANOTHER MEMBER OF THE HOUSEHOLD HAS IT; 3=HE HAS IT, BUT JUST DOESN'T WANT TO SHOW IT NO OTHER REASON GIVEN "
+code_same,HERE IS THE CODE OF THE PARCELLE:. DOES THIS MATCH THE CODE ON THE RECEIPT? THE ,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+code_diff,"IF NOT, WRITE THE CODE WRITTEN ON THE RECEIPT.",
+col_code,WRITE THE COLLECTOR CODE,
+receipt_photo_ok,May I take a photo of the receipt?,0=No; 1=Yes
+receipt_photo_no,WHY DID THE PERSON REFUSE TO LET YOU PHOTOGRAPH THE RECEIPT?,1=HE WORRIED THAT HE WOULD HAVE PROBLEMS WITH THE GOVERNMENT / HAVE TO PAY AGAIN; 2=HE WORRIED THAT THIS WOULD AFFECT HIS ARRANGEMENT WITH THE TAX COLLECTOR OF THE DGRKOC; 3=REFUSAL - NO REASON GIVEN
+receipt_photo_no_other,WHY DID THE PERSON REFUSE TO LET YOU PHOTOGRAPH THE RECEIPT? (Other),
+receipt_photo,TAKE A PHOTO OF THE RECEIPT. MAKE SURE IT IS CLEAR.,
+amount_match,IS THE AMOUNT PAID ON THE RECEIPT THE SAME AS THE AMOUNT THE RESPONDENT TOLD YOU,0=No; 1=Yes
+amount_new,WRITE THE AMOUNT WRITTEN ON THE RECEIPT,
+amount_match_no,I see that the amount written on the receipt does not match what you told me. Mi,"1=I made a mistake / forgot when I told you the amount before ; 2=I told you the amount I really paid in total, but this is the receipt the collector gave me ; 3=I felt uncomfortable telling you the amount I paid  The true amount is on the receipt "
+tax_obs,DO YOU HAVE ANY OTHER OBSERVATIONS ABOUT THIS PERSON'S EXPERIENCE WITH THE TAX C,0=No; 1=Yes
+tot_complete_control,,
+consent7,"Do you have any questions, or would you like more information about the activiti",0=No; 1=Yes
+hh_head,IS THIS THE HOUSEHOLD HEAD?,0=No; 1=Yes
+hh_relation,What is your relationship with the household head?,1=Husband or wife (spouse) ; 2=Son or daughter ; 3=Brother or sister ; 4=Mother or father; 5=Niece or nephew ; 6=Non-relative child ; 7=Non-relative adult ; 8=Grandchild; 9=Paternal Grandparent ; 10=Paternal Uncle or Aunt ; 11=Paternal Cousin ; 12=Maternal Grandparent ; 13=Maternal Uncle or Aunt ; 14=Maternal Cousin
+hh_relation_other,What is your relationship with the household head? (Other),
+born_kga,Were you born in Kananga?,0=No; 1=Yes
+move_kga,What year did you move to Kananga?,
+sex,SELECT THE SEX OF THE INTERVIEWEE.,1=Male; 2=Female
+age,How old were you at your last birthday?,
+edu,What is the highest level of school you have reached?,0=Never been to school; 1=Kindergarten; 2=Primary; 3=Secondary; 4=University; 8888=HE/SHE DOESN'T KNOW
+edu2,What is the last class reached in that level?,0=0 (didn't complete a class); 1=1; 2=2; 3=3; 4=4; 5=5; 6=6; 7=>6
+dgrkoc_submit,"In general, think of what the DGRKOC tax collectors will do with the money they ",
+dgrkoc_steal,How much of this money will they put in their pockets? ,
+chef_submit,"In general, think of what the chefs de localite (and their deputies) will do wit",
+chef_steal,How much of this money will they put in their pockets? ,
+gov_use,Now I would like to ask you what you think the provincial government will do wit,
+gov_steal,Corruption and waste:,
+neighbors_pay,"In your opinion, how many of your neighbors have already paid the property tax i","1=All of my neighbhors; 2=Most of my neighbors; 3=Some of my neighbors; 4=A few of my neighbors; 5=None of my neighbors; 8888=AFTER ASKING SEVERAL TIMES, THE RESPONDENT INSISTS THAT HE/SHE DOESN'T KNOW"
+tax_oblig,"Now, I would like to ask you if you think it is currently an obligation to pay I","1=It is an important obligation Everyone must pay; 2=It is an obligation, but only for those who benefit from government services ; 3=It is an obligation, but only for those who have the means to pay; 4=It is not an obligation The government should get its revenue from other sources"
+dgrkoc_perform,"Overall, how would you rate the performance of the tax ministry in Kananga?",1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+gov_perform,"Overall, how would you rate the performance of the provincial government in Kana",1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+chef_perform,"Overall, how would you rate the performance of your locality chief and his deput",1=Excellent; 2=Very good; 3=Good; 4=Fair; 5=Poor; 6=Very poor; 7=Terrible; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+salongo2,Did you participate in Salongo in the past two weeks?,0=No; 1=Yes
+salongo_who,Who organised Salongo?,1=Chef d'avenue; 2=Chef d'avenue - adjoint; 3=Chef de sous-localité; 4=Chef de sous-localité - adjoint; 5=Chef de localité; 6=Chef de localité - adjoint; 7=The people themselves
+conflict,Now imagine that you have a conflict with your neighbor (for example a dispute a,1=Le chef de localité; 2=Le chef d'avenue ; 3=la police/le système judiciaire
+trust_gov,The provincial government,1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust_dgrkoc,"I am going to name a number of organizations. For each one, could you tell me ho",1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+trust_chef,"I am going to name a number of organizations. For each one, could you tell me ho",1=A lot of confidence; 2=Some confidence; 3=Not very much confidence; 4=No confidence at all; 8888=HE/SHE DOESN'T KNOW
+payment,"Now, please take this 500 FC to thank you for the time you have spent with me to",
+tot_complete_long,,
+photo,Take a photo of the respondent.,
+hh_photo,TAKE A PICTURE OF THE HOUSE. BE SURE THAT THE PHOTO IS CLEAR. WE ARE GOING TO US,
+walls,OBSERVE THE PRINCIPAL MATERIAL OF THE WALLS OF THE MAIN HOUSE.,0=Sticks/Palm; 1=Mud brick - bad condition; 2=Mud brick - good condition; 3=Bricks; 4=Ciment
+walls_other,OBSERVE THE PRINCIPAL MATERIAL OF THE WALLS OF THE MAIN HOUSE. (Other),
+roof,OBSERVE THE PRINCIPAL MATERIAL OF THE ROOF. ,1=THATCH/STRAW; 2=MAT; 3=PALMS/BAMBOOS; 4=LOGS (PIECES OF WOOD); 5=CONCRETE FLOOR; 6=TILES (FOR ROOF)/SLATE/ETERNIT; 7=SHEET IRON; 8888=I CANNOT SEE
+roof2,WHAT IS THE CONDITION OF THE ROOF?,1=Shiny metal (very new); 2=Somewhat new metal; 3=Rusted metal
+ravine,IS THIS COMPOUND THREATENED BY A RAVINE?,0=No; 1=Yes - somewhat threatened; 2=Yes- gravely threatened
+metainstanceid,meta-instanceID,
+a3,G1-A3,
+a4,G1-A4,
+tmt,,
+commune,,
+quartier,,
+locality,,
+survey_chec_code,,
+attempt,,
+attempt2,,
+attempt3,,
+job,What type of work does the property owner do now?,0=Unemployed-no work; 1=Medical assistant; 2=Lawyer; 3=Cart pusher; 4=Handyman; 5=Driver (car and taxi moto); 6=Tailor; 7=Diamond digger; 8=Farmer; 9=Teacher; 10=Gardner; 11=Mason; 12=Mechanic; 13=Carpenter; 14=Muyanda; 15=Military officer/soldier or police officer; 16=Fisherman; 17=Government personnel; 18=Pastor; 19=Porter; 20=Professor; 21=Guard; 22=Work for NGO; 23=Seller (in market); 24=Seller (in a store); 25=Seller (at home); 27=Student; 28=SNCC; 29=DOESN'T KNOW
+job_other,What type of work does the property owner do now? (Other),
+job_gov,Does a close member of the family of the property owner work for the provincial ,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+tribe,What is his tribe?,
+move_ave,For how many years has he lived on this avenue?,
+ave_vis2,Pourquoi ils n'ont pas visité votre maison?,"1=They have not come to this avenue. ; 2=They came, but no one was at the house.; 3=They came but we fled; 4=They came but we said they couldn't enter the compound; 5=The household is exempted. "
+ave_vis2_other,other: Pourquoi ils n'ont pas visité votre maison?,
+exempt_not_enums,"SELON VOUS (L'ENQUETEUR), EST-CE QUE CETTE PARCELLE AURAIT DU ETRE EXEMPTE? SI O",
+bribe,Whom did your household pay?,0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+whopay3d,POURQUOI EST-CE QUE LE PAYEUR N'EST PAS DISPONIBLE?,1=AT THE HOUSE BUT BUSY; 2=AT WORK; 3=ON A TRIP; 4=LIVES IN A DIFFERENT POLYGON; 5=LIVES IN A DIFFERENT COMPOUND IN THE SAME POLYGON; 6=SICK; 7=DEAD
+whopay3d_other,Other: POURQUOI EST-CE QUE LE PAYEUR N'EST PAS DISPONIBLE?,
+whopaprenom,"OK, FAITES UN EFFORT DE CONTACTER LA PERSONNE ET FIXEZ UN RENDEZVOUS AVEC LUI. A",
+appt,G2-G3-appt,
+whoreceipt,"SI VOUS NE POUVEZ PAS  L'ATTEINDRE, REVENEZ A CETTE PARCELLE PLUS TARD.",
+consent1b,"Maintenant, je voudrais vous demander si vous pouvez faire un entretien court. V",
+consent2,G2-G4-G5-consent2,
+consent3,G2-G4-G5-consent3,
+consent3b,"Avant de continuer, laissez-moi souligner une chose très importante. Si à n'impo",
+consent4,G2-G4-G5-consent4,
+consent6,I would also like to ask your permission to take an audio recording of our inter,
+record,NOW TURN ON THE AUDIO RECORDING.,
+rumor1,"Before they came, had you heard of the on the ground campaign to collect propert",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+rumor2,"Before today, had you heard of the on the ground campaign to collect property ta",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+rumor3,Who told you about the campaign?,1=PEOPLE IN MY PARCELLE; 2=NEIGHBORS; 3=PEOPLE WHO LIVE IN THE LOCALITY; 4=PEOPLE WHO LIVE IN THE QUARTIER; 5=PEOPLE WHO LIVE OUTSIDE THE QUARTIER; 6=THE CRIEUR WITH THE MEGAPHONE; 7=THE CHEF D'AVENUELOCALITEQUARTIER; 8=THE RADIO; 9=THE HARVARD ENUMERATOR; 10=THE FLIER OF THE PERCEPTORS
+rumor3_other,Other: Who told you about the campaign?,
+tdm,"When the collectors came to your house to collect the tax, did they have a porta",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW
+name_match,G2-G4-G6-G10-name_match,
+name_match_no,Reason for this difference between the name written on the receipt and the name ,
+bribe2a,"Apart from the  that you paid, did the collector ask you for another small sum o",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+bribe2a_amt,How much did you pay?,
+bribe2b,"Apart from the  that you paid, did the collector ask you for another small sum o",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+bribe2b_amt,How much did you pay?,
+bribe3,"Did the collector ask you for another small sum apart from the tax (for example,",0=No; 1=Yes; 8888=HE/SHE DOESN'T KNOW; 9999=DOESN'T WANT TO SAY
+bribe3_amt,How much did you pay?,
+dgrkoc_imp,To what degree do you think the work done by the DGRKOC tax collectors is import,1=The work of the DGRKOC tax collectors is very important for the development of the province and the well being of the Kasaien peoples.  ; 2=The work of the DGRKOC tax collectors is important for the development of the province and the well being of the Kasaien peoples. ; 3=The work of the DGRKOC tax collectors is somewhat important for the development of the province and the well being of the Kasaien peoples. ; 4=The work of the DGRKOC tax collectors is not important for the development of the province and the well being of the Kasaien peoples. ; 5=The work of the DGRKOC tax collectors is not at all important for the development of the province and the well being of the Kasaien peoples. ; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION.; 8888=HE INSISTS THAT HE DOES NOT KNOW.
+gov_imp,To what degree do you think the work done by the chief of locality and his deput,1=The work of the provincial government is very important for the development of the province and the well being of the Kasaien peoples.  ; 2=The work of the provincial government is important for the development of the province and the well being of the Kasaien peoples. ; 3=The work of the provincial government is somewhat important for the development of the province and the well being of the Kasaien peoples. ; 4=The work of the provincial government is not important for the development of the province and the well being of the Kasaien peoples. ; 5=The work of the provincial government is not at all important for the development of the province and the well being of the Kasaien peoples. ; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION.; 8888=HE INSISTS THAT HE DOES NOT KNOW.
+chef_imp,To what degree do you think the work done by the chief of locality and his deput,1=The work of the chief of locality and his deputies is very important for the development of the province and the well being of the Kasaien peoples.  ; 2=The work of the chief of locality and his deputiest is important for the development of the province and the well being of the Kasaien peoples. ; 3=The work of the chief of locality and his deputies is somewhat important for the development of the province and the well being of the Kasaien peoples. ; 4=The work of the chief of locality and his deputies is not important for the development of the province and the well being of the Kasaien peoples. ; 5=The work of the chief of locality and his deputies is not at all important for the development of the province and the well being of the Kasaien peoples. ; 9999=HE DOESN'T WANT TO RESPOND TO THIS QUESTION.; 8888=HE INSISTS THAT HE DOES NOT KNOW.
+salongo_acceptability,Imagine your chef de localité asks several members of the community to participa,1=It's acceptable; 2=It could be acceptable under some circumstances; 3=It is not acceptable
+trust_police,"I am going to name a number of organizations. For each one, could you tell me ho",1=A lot of confidence; 2=Some confidence ; 3=Not very much confidence; 4=No confidence at all ; 5=The work of the chief of locality and his deputies is not at all important for the development of the province and the well being of the Kasaien peoples. ; 8888=HE INSISTS THAT HE DOES NOT KNOW.
+trust_kin,"I am going to name a number of organizations. For each one, could you tell me ho",1=A lot of confidence; 2=Some confidence ; 3=Not very much confidence; 4=No confidence at all ; 5=The work of the chief of locality and his deputies is not at all important for the development of the province and the well being of the Kasaien peoples. ; 8888=HE INSISTS THAT HE DOES NOT KNOW.
+provide0,Acknowledge : I am going to list some services/infrastructure many communities h,
+provide_schools,The Schools . I am going to list some services/infrastructure many communities h,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_schools_other,Other: The Schools . I am going to list some services/infrastructure many commun,
+provide_water,Water system/wells .I am going to list some services/infrastructure many communi,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_water_other,Other: Water system/wells .I am going to list some services/infrastructure many ,
+provide_health,Health care. I am going to list some services/infrastructure many communities ha,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_health_other,Other : Health care. I am going to list some services/infrastructure many commun,
+provide_security,Economic development. I am going to list some services/infrastructure many commu,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_security_other,Other: Economic development. I am going to list some services/infrastructure man,
+provide_welfare,Keeping people safe. I am going to list some services/infrastructure many commun,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_welfare_other,Other:Keeping people safe. I am going to list some services/infrastructure many ,
+provide_development,Helping poor people. I am going to list some services/infrastructure many commun,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_development_ot,Other: Helping poor people. I am going to list some services/infrastructure many,
+provide_roads,Road maintenance. I am going to list some services/infrastructure many communiti,1=National government ; 2=Provincial government; 3=NGOs; 4=Community organizations; 5=Religious groups/leaders; 6=Traditional leaders; 7=International organizations; 8=Everyone should take care of themselves; 8888=HE/SHE DOESN'T KNOW
+provide_roads_other,Other : Road maintenance. I am going to list some services/infrastructure many c,
+know_dgrkoc,Do you know the name of the provincial tax ministry in Kananga? ,
+dgrkoc_info,EXPLAIN WHAT THE DGRKOC IS.,
+attempt_check,,
+make_appt,G2-G3-make_appt,
+first,,
+miss_visit,G3-G4-miss_visit,
+flier_remember,G3-G4-flier_remember,
+trust,To what extent do you trust the state and its agents?,
+province,Where does the property owner's family come from originally? Which province? ,1=Bandundu; 2=Bas-Congo; 3=Equateur; 4=Kasai Occidental; 5=Kasai Oriental; 6=Katanga; 7=Kinshasa; 8=Maniema; 9=Nord-Kivu; 10=Orientale; 11=Sud-Kivu; 12=Other Country; 8888=IL/ELLE NE SAIT PAS
+country,Which country?,
+territory,Which territory?,
+subtribe,What is his subtribe?,1=Ba Piang; 2=Babindi ba nkusu (Muetshi); 3=Babindi ba Tshibala (Kazumba); 4=Bangende; 5=Bangongo; 6=Bashi Biyeng; 7=Bashi Bushong; 8=Batua; 9=Bandjembe; 10=Bashi Basong; 11=Bashi Mapangu; 12=Bashi Mbang; 13=Bakua Kalonji; 14=Bakua Lukusa; 15=Bakua Mulumba; 16=Bena Bilonda; 17=Bena Kalambayi; 18=Bena Mulenga; 19=Bajila Kasanga; 20=Bakua Biayi; 21=Bakua Diyaya; 22=Bakua Kabunda; 23=Bakua Kasua; 24=Bakua Lule; 25=Bakua Mamba; 26=Bakua Meshi; 27=Bakua Mpika; 28=Bakua Muanza; 29=Bakua Ndolo; 30=Bakua Nkate; 31=Bakua Tshidimba; 32=Bakua Tshipamba; 33=Bakuakasanzu; 34=Bena Biyombo; 35=Bena Kabenga; 36=Bena Kabiya; 37=Bena Kadeibue; 38=Bena Kalamba; 39=Bena Kashiya; 40=Bena Katende; 41=Bena Kayembe; 42=Bena Kayenga; 43=Bena Mbala; 44=Bena Mfwamba; 45=Bena Muaba; 46=Bena Mutshipayi; 47=Bena Ngoji; 48=Bena Tshiadi; 49=Bimbadi; 50=Bakua Mpungu; 51=Bakua Tshisumba; 52=Bena Kanyinda; 53=Bena Kapuki; 54=Bena Koshi; 55=Bena Ngoyi; 56=Katakokombe; 57=Kole; 58=Lomela; 59=N'djele; 60=Ndovu; 61=Tshumbe; 63=Bajila Mpampi; 64=Bakua Beya; 65=Bakua Kunda; 66=Bakua Longo; 67=Bakua Mbayi; 68=Bakua Mushilu; 69=Bakua Ndaye; 70=Bakua Odia; 71=Bakua Tshishimbula; 72=Bena Kasasa; 73=Bena Mande; 74=Bena Mukangala; 75=Bena Tshikulu; 8888=HE/SHE DOESN'T KNOW; 9999=Other
+subtribe_o,WRITE THE SUBTRIBE,
+v260,G3-G5-G13-G6b-G20-salongo_acceptability_t,
+provide_schools_oth,G3-G5-G13-G6b-G23-provide_schools_other,
+provide_health_othe,G3-G5-G13-G6b-G23-provide_health_other,
+provide_security_ot,G3-G5-G13-G6b-G23-provide_security_other,
+provide_welfare_oth,G3-G5-G13-G6b-G23-provide_welfare_other,
+v289,G3-G5-G13-G6b-G23-provide_development_other,
+v290,G3-G5-G13-G6b-G23-provide_development_t,
+v257,G3-G5-G13-G6b-G20-salongo_acceptability_t,
+v286,G3-G5-G13-G6b-G23-provide_development_other,
+v287,G3-G5-G13-G6b-G23-provide_development_t,
+v226,G3-G5-G13-G6b-G23-provide_development_other,
+v228,G3-G5-G13-G6b-G23-provide_development_other,
+rand_recording,,
+recording1,,
+consent07,G3-G4-consent07,
+consent08,G3-G4-consent08,
+consent09,G3-G4-consent09,
+record_short_finished,G3-G4-record_short_finished,
+record02,G3-G4-record02,
+paid_who1,Whom did your household pay?,1=DGRKOC ; 2=DGI; 3=Chef d'avenue; 4=Chef de localité; 5=Chef de quartier; 6=Chef de commune; 7=PAID HIMSELF AT THE BANK; 8=PAID HIMSELF AT THE DGRKOC; 8888=HE/SHE DOESN'T KNOW
+paid_who2,Whom did your household pay?,1=DGRKOC ; 2=DGI; 3=Chef d'avenue; 4=Chef de localité; 5=Chef de quartier; 6=Chef de commune; 7=PAID HIMSELF AT THE BANK; 8=PAID HIMSELF AT THE DGRKOC; 8888=HE/SHE DOESN'T KNOW
+paid_who3,Whom did your household pay?,1=DGRKOC ; 2=DGI; 3=Chef d'avenue; 4=Chef de localité; 5=Chef de quartier; 6=Chef de commune; 7=PAID HIMSELF AT THE BANK; 8=PAID HIMSELF AT THE DGRKOC; 8888=HE/SHE DOESN'T KNOW
+chef_type1,,
+chef_type2,,
+chef_type3,,
+know_how1,,
+know_how2,,
+know_how3,,
+know_how4,,
+date,,
+date_f,,
+date_tmp1,,
+date_tmp2,,
+date_tmp3,,
+date_tmpp1,,
+date_tmpp2,,
+date_tmpp3,,
+type,type,
+short_label,short_label,
+value_label,,
+keep,,
+labelEnglish,label::English ,
+labelFrancais,label::Francais,
+tot_complete_temp,,
+_long,,
+control,,
+short,,
+short_empty,,
+tot_complete,,
+pilot,,
+new_survey_version,,
+survey_length,,
+dup_real,,
+monitoring_survey_twice,,
+unknown_compound,,
+dup_compound,,
