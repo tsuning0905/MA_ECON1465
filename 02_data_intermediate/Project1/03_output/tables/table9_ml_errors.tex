@@ -1,0 +1,22 @@
+\begin{table}[!htbp]\centering\footnotesize
+\caption{Out-of-sample error of tree-based models}\label{tab:ml}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{4}{c}{$Y$ = any exemption} & \multicolumn{2}{c}{$Y$ = old-age exemption} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-7}
+Model & Test MSE & Test RMSE & \% vs mean & OOB MSE & Test MSE & \% vs mean \\
+\midrule
+Mean only (benchmark) & 0.2134 & 0.4620 & +0.0 & -- & 0.1333 & +0.0 \\
+OLS (linear probability) & 0.1422 & 0.3771 & -33.4 & -- & 0.1094 & -17.9 \\
+Regression tree (pruned) & 0.1486 & 0.3855 & -30.4 & -- & 0.1139 & -14.5 \\
+Bagging ($m=p=16$) & 0.1436 & 0.3790 & -32.7 & 0.1469 & 0.1066 & -20.0 \\
+Random forest ($m=4$) & 0.1397 & 0.3738 & -34.5 & 0.1431 & 0.1051 & -21.1 \\
+Boosting ($B=351$, $\lambda=0.01$, $d=3$) & 0.1375 & 0.3709 & -35.6 & -- & 0.1031 & -22.7 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item \textit{Notes:} Owner-linked sample split 80/20 by neighbourhood (163 training and 41 test neighbourhoods; 1,289 test properties; seed 1465). 16 pre-determined features including Local. MSE of a 0/1 outcome is the Brier score. The tree's complexity parameter (1-SE rule) and the number of boosting iterations are chosen by 10-fold CV grouped by neighbourhood inside the training set; the random forest's $m$ is chosen by OOB error. OOB MSE is computed on the training set.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,7 @@
+Model,Test MSE,Test RMSE,% vs mean,OOB MSE,Test MSE,% vs mean
+Mean only (benchmark),0.2134,0.4620,+0.0,--,0.1333,+0.0
+OLS (linear probability),0.1422,0.3771,-33.4,--,0.1094,-17.9
+Regression tree (pruned),0.1486,0.3855,-30.4,--,0.1139,-14.5
+Bagging (m=p=16),0.1436,0.3790,-32.7,0.1469,0.1066,-20.0
+Random forest (m=4),0.1397,0.3738,-34.5,0.1431,0.1051,-21.1
+"Boosting (B=351, \lambda=0.01, d=3)",0.1375,0.3709,-35.6,--,0.1031,-22.7

@@ -1,0 +1,29 @@
+,Central,Local - Central,p,Central,Local - Central,p
+Panel A. Owner traits (midline survey),,,,,,
+Owner age,54.280,0.438 (0.469),0.35,55.737,1.263* (0.683),0.06
+Owner 55 or older,0.476,0.012 (0.015),0.44,0.517,0.037* (0.019),0.05
+Owner female,0.233,-0.016 (0.010),0.12,0.272,-0.043** (0.017),0.01
+Owner Luluwa,0.769,0.027 (0.016),0.10,0.771,0.042** (0.019),0.03
+Co-ethnic with chief,0.657,0.061 (0.040),0.12,0.679,0.089** (0.045),0.05
+Owner works for the state,0.153,0.002 (0.007),0.77,0.146,-0.001 (0.010),0.91
+Relative works for the state,0.228,0.004 (0.012),0.71,0.236,0.006 (0.014),0.65
+Owner employed,0.738,0.001 (0.014),0.95,0.685,0.003 (0.020),0.90
+Years on the avenue,16.261,-0.121 (0.766),0.87,18.292,0.501 (0.945),0.60
+Good walls,0.692,-0.005 (0.050),0.91,0.713,-0.053 (0.052),0.31
+Log predicted property value,6.570,-0.088 (0.083),0.29,6.855,-0.194** (0.092),0.04
+Distance to city centre,3.139,0.173** (0.083),0.04,3.217,0.361*** (0.097),0.00
+Joint F-test (p-value),,1.69,0.08,,2.81,0.00
+Properties,,"22,549",,,"6,282",
+"Panel B. Neighbourhood chief (pre-randomization chief survey), one row per neighbourhood",,,,,,
+Chief age,59.633,-0.110 (1.713),0.95,,,
+Chief female,0.046,-0.050** (0.024),0.04,,,
+Chief Luluwa,0.812,0.041 (0.057),0.47,,,
+Chief education (0--4),2.908,0.094 (0.073),0.20,,,
+Year chief appointed,2005.324,-0.032 (0.898),0.97,,,
+Salongo frequency,3.343,0.044 (0.099),0.65,,,
+Distance to city centre,3.109,0.135 (0.094),0.15,,,
+Panel C. Sample selection (attrition),,,,,,
+Exemption decision recorded (all properties),0.514,-0.031 (0.037),0.41,,,
+Matched to midline survey (all properties),0.789,-0.018 (0.024),0.46,,,
+In owner-linked sample (registered),0.417,0.056 (0.042),0.18,,,
+Owner age reported as a band,0.374,0.029 (0.030),0.34,,,

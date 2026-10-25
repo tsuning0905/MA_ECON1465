@@ -1,0 +1,17 @@
+,OLS,Ridge \lambda_{min,Ridge \lambda_{1se,Lasso \lambda_{min,Lasso \lambda_{1se
+Local,0.0088,0.0088,0.0041,0.0081,0
+Age,0.0942,0.0865,0.0266,0.0953,0.0662
+Female,-0.0489,-0.0433,-0.0079,-0.0472,0
+Co-ethnic with chief,0.0033,-0.0018,-0.0020,-0.0011,0
+Local x Age,0.0084,0.0130,0.0163,0.0061,0
+Local x Female,-0.0006,-0.0042,-0.0060,-0.0005,0
+Local x Co-ethnic,-0.0246,-0.0169,-0.0016,-0.0151,0
+Local x Relative in state job,0.0012,0.0010,0.0023,0.0012,0
+Local x Luluwa,0.0309,0.0226,0.0021,0.0194,0
+\lambda,--,286.8,15361.7,0.0014,0.0499
+Non-zero coefficients (of 23),23,23,23,19,2
+CV MSE (x 10^3),--,102.906,108.958,102.846,109.098
+Post-double-selection Lasso ATE of Local,,,,,
+\hspace{1emAny exemption,0.020,(0.022),19 controls selected,,
+\hspace{1emOld-age exemption,0.028,(0.019),15 controls selected,,
+"\hspace{1emOld age, owner <55",0.012**,(0.005),12 controls selected,,

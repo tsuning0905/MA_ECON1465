@@ -1,0 +1,43 @@
+\begin{table}[!htbp]\centering\scriptsize
+\caption{Robustness of the Local effect}\label{tab:robust}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+Specification & Old age & Old age, owner $<$ cut-off & Any exemption & No basis \\
+\midrule
+(1) Baseline (Table 5, Panel A) & $0.048^{**}$ & $0.011^{**}$ & $0.019$ & $0.006$ \\
+ & $(0.021)$ & $(0.005)$ & $(0.029)$ & $(0.006)$ \\
+(2) Cut-off age 50 & -- & $0.008^{**}$ & -- & -- \\
+ &  & $(0.004)$ &  &  \\
+(3) Cut-off age 60 & -- & $0.017^{**}$ & -- & -- \\
+ &  & $(0.007)$ &  &  \\
+(4) Cut-off age 65 & -- & $0.019^{**}$ & -- & -- \\
+ &  & $(0.009)$ &  &  \\
+(5) Exact ages only (drop age bands) & $0.055^{**}$ & $0.011^{*}$ & $0.016$ & $0.011^{*}$ \\
+ & $(0.024)$ & $(0.006)$ & $(0.030)$ & $(0.006)$ \\
+(6) Stratum FE only & $0.051^{**}$ & $0.010^{**}$ & $0.027$ & $0.004$ \\
+ & $(0.021)$ & $(0.004)$ & $(0.028)$ & $(0.006)$ \\
+(7) No fixed effects & $0.046^{**}$ & $0.012^{**}$ & $0.026$ & $0.003$ \\
+ & $(0.022)$ & $(0.005)$ & $(0.031)$ & $(0.006)$ \\
+(8) Neighbourhood means & $0.020$ & $0.010$ & $0.025$ & $0.009$ \\
+ & $(0.029)$ & $(0.007)$ & $(0.042)$ & $(0.008)$ \\
+(9) Logit, average marginal effect & $0.045^{**}$ & $0.013^{***}$ & $0.019$ & $0.006$ \\
+ & $(0.019)$ & $(0.005)$ & $(0.029)$ & $(0.006)$ \\
+(10) Control for share of Local neighbours & $0.048^{**}$ & $0.012^{***}$ & $0.019$ & $0.007$ \\
+ & $(0.021)$ & $(0.005)$ & $(0.030)$ & $(0.006)$ \\
+(11) Owner covariates (Table 5, Panel B) & $0.026$ & $0.012^{**}$ & $0.020$ & $0.006$ \\
+ & $(0.019)$ & $(0.005)$ & $(0.023)$ & $(0.006)$ \\
+(12) Registered sample, any owner data & $0.041^{***}$ & -- & $0.039^{*}$ & -- \\
+ & $(0.014)$ &  & $(0.021)$ &  \\
+(13) All midline owners, unrecorded = 0 & $0.017$ & $0.004^{**}$ & $-0.003$ & $0.000$ \\
+ & $(0.011)$ & $(0.002)$ & $(0.014)$ & $(0.003)$ \\
+\midrule
+Randomization-inference $p$ (2,000 draws) & 0.045 & 0.009 & 0.601 & 0.396 \\
+Central mean & 0.130 & 0.014 & 0.293 & 0.027 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item \textit{Notes:} Owner-linked sample unless stated. Each cell is the coefficient on Local (standard error clustered by neighbourhood). Rows 2--4 move the age cut-off that defines a discretionary old-age exemption (legal cut-off 55). Row 5 drops owners whose age the respondent gave as a five-year band. Row 8 collapses to neighbourhood means (robust SE). Row 9 reports logit average marginal effects. Row 12 uses all registered properties. The randomization-inference $p$-value re-assigns Local across neighbourhoods within strata 2,000 times (seed 1465) and compares $|\hat\beta|$ with the permutation distribution. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

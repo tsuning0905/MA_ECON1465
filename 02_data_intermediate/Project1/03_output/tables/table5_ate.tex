@@ -1,0 +1,30 @@
+\begin{table}[!htbp]\centering\scriptsize
+\caption{Effect of chief collection on exemptions, by stated reason and legal basis}\label{tab:ate}
+\begin{threeparttable}
+\begin{tabular}{lccccccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) & (9) \\
+\midrule
+ & Any & Old age & Widow & Other & Old age, 55+ & Old age, $<$55 & Widow, male & Any discr. & No basis \\
+\midrule
+\multicolumn{10}{l}{\textit{Panel A. Fixed effects only}} \\
+Local & $0.019$ & $0.048^{**}$ & $-0.027$ & $-0.002$ & $0.036^{**}$ & $0.011^{**}$ & $-0.004$ & $0.007$ & $0.006$ \\
+ & $(0.029)$ & $(0.021)$ & $(0.017)$ & $(0.006)$ & $(0.018)$ & $(0.005)$ & $(0.004)$ & $(0.007)$ & $(0.006)$ \\
+$R^2$ & 0.079 & 0.068 & 0.039 & 0.024 & 0.054 & 0.033 & 0.015 & 0.026 & 0.028 \\
+\midrule
+\multicolumn{10}{l}{\textit{Panel B. Adding owner covariates}} \\
+Local & $0.020$ & $0.026$ & $-0.008$ & $0.001$ & $0.014$ & $0.012^{**}$ & $-0.004$ & $0.009$ & $0.006$ \\
+ & $(0.023)$ & $(0.019)$ & $(0.013)$ & $(0.007)$ & $(0.016)$ & $(0.005)$ & $(0.005)$ & $(0.007)$ & $(0.006)$ \\
+$R^2$ & 0.335 & 0.203 & 0.311 & 0.052 & 0.239 & 0.046 & 0.026 & 0.041 & 0.055 \\
+\midrule
+Central mean & 0.295 & 0.130 & 0.139 & 0.025 & 0.116 & 0.014 & 0.026 & 0.040 & 0.027 \\
+Effect / Central mean & 0.06 & 0.37 & -0.19 & -0.07 & 0.31 & 0.82 & -0.17 & 0.17 & 0.21 \\
+Observations & 6,162 & 6,162 & 6,162 & 6,162 & 6,162 & 6,162 & 6,162 & 6,162 & 6,162 \\
+Clusters & 197 & 197 & 197 & 197 & 197 & 197 & 197 & 197 & 197 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item \textit{Notes:} Owner-linked sample. Each column is a 0/1 outcome: (1) any exemption; (2)--(4) exemption by the reason the collector recorded; (5) old-age exemption of an owner aged 55 or older (legal); (6) old-age exemption of an owner under 55; (7) widow exemption of a male owner; (8) column 6 or 7; (9) exemption of a man under 55 who is not exempted as a pensioner or disabled, whatever the stated reason. All regressions include stratum, house-type and two-month time fixed effects; Panel B adds owner age, sex, Luluwa, own and relative state job, employment, wall quality, co-ethnicity with the chief, log predicted value and distance to the centre (missing values set to the mean with indicators). Standard errors clustered by neighbourhood. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,12 @@
+# Python 3.13 (tested 3.13.17). Install with:  pip install -r requirements.txt
+pandas==3.0.5
+numpy==2.5.3
+scipy==1.18.1
+statsmodels==0.15.0
+scikit-learn==1.9.1
+matplotlib==3.11.2
+networkx==3.7
+openpyxl==3.1.5
+# Non-Python tools:
+#   Graphviz 'dot' (DAG figures):   apt install graphviz   |  brew install graphviz  |  conda install graphviz
+#   pdflatex (paper, optional):     TeX Live / MacTeX / MiKTeX, packages psnfss (mathptmx), booktabs, threeparttable, natbib, hyperref

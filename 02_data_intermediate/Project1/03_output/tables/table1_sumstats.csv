@@ -1,0 +1,29 @@
+Variable,N,Mean,SD,Central,Local
+Panel A. Registered properties (collector records),,,,,
+Local (chief collects),"14,381",0.482,0.500,0.000,1.000
+Exempted by collector,"14,381",0.286,0.452,0.264,0.310
+\hspace{1emReason: old age,"14,381",0.143,0.350,0.126,0.162
+\hspace{1emReason: widow,"14,381",0.114,0.318,0.112,0.117
+\hspace{1emReason: other,"14,381",0.029,0.166,0.026,0.031
+Enumerator disagrees with collector,"14,380",0.051,0.220,0.044,0.058
+Paid a bribe (midline),"19,394",0.014,0.119,0.014,0.015
+Panel B. Owner-linked sample (owner age and sex observed),,,,,
+Exempted by collector,"6,282",0.306,0.461,0.293,0.319
+\hspace{1emReason: old age,"6,282",0.153,0.360,0.130,0.176
+\hspace{2emowner 55 or older,"6,282",0.133,0.340,0.116,0.150
+\hspace{2emowner under 55 (discretionary),"6,282",0.020,0.140,0.014,0.026
+\hspace{1emReason: widow,"6,282",0.128,0.334,0.138,0.117
+\hspace{2emowner male (discretionary),"6,282",0.021,0.142,0.026,0.015
+"Exempt, man under 55, no pension/disability","6,282",0.028,0.166,0.027,0.030
+Owner age (years),"6,282",55.751,15.020,55.737,55.765
+Owner 55 or older,"6,282",0.522,0.500,0.517,0.527
+Age reported as a band,"6,282",0.383,0.486,0.374,0.393
+Owner female,"6,282",0.259,0.438,0.272,0.246
+Owner Luluwa,"5,675",0.788,0.409,0.771,0.804
+Co-ethnic with neighbourhood chief,"5,421",0.709,0.454,0.679,0.736
+Owner works for the state,"5,966",0.145,0.352,0.146,0.143
+Relative works for the state,"6,133",0.229,0.420,0.236,0.222
+Owner employed,"5,966",0.692,0.462,0.685,0.698
+Good walls (brick/cement/good mud brick),"6,115",0.676,0.468,0.713,0.640
+Log predicted property value,"6,279",6.668,1.106,6.855,6.485
+Distance to city centre (km),"6,256",3.133,1.355,3.217,3.051
