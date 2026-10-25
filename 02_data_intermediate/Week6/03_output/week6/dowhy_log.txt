@@ -1,0 +1,45 @@
+=== Step 1: model ===
+treatment: ['local'] | outcome: ['exempt']
+
+=== Step 2: identify ===
+Estimand type: EstimandType.NONPARAMETRIC_ATE
+
+### Estimand : 1
+Estimand name: backdoor
+Estimand expression:
+   d                         
+────────(E[exempt|owner_age])
+d[local]                     
+Estimand assumption 1, Unconfoundedness: If U→{local} and U→exempt then P(exempt|local,owner_age,U) = P(exempt|local,owner_age)
+
+### Estimand : 2
+Estimand name: iv
+No such variable(s) found!
+
+### Estimand : 3
+Estimand name: frontdoor
+No such variable(s) found!
+
+### Estimand : 4
+Estimand name: general_adjustment
+Estimand expression:
+   d                         
+────────(E[exempt|owner_age])
+d[local]                     
+Estimand assumption 1, Unconfoundedness: If U→{local} and U→exempt then P(exempt|local,owner_age,U) = P(exempt|local,owner_age)
+
+
+=== Step 3: estimate ===
+estimate.value = 0.03858087063385557
+
+=== Step 4: refute ===
+Refute: Add a random common cause
+Estimated effect:0.03858087063385557
+New effect:0.03862277300715935
+p value:0.98
+
+Refute: Use a subset of data
+Estimated effect:0.03858087063385557
+New effect:0.03654750305616133
+p value:0.96
+

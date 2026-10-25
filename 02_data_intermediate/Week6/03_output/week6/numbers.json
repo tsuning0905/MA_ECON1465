@@ -1,0 +1,188 @@
+{
+  "seed": 1465,
+  "n_boot": 500,
+  "alpha": 0.0,
+  "gamma": 1.0,
+  "n_registered_with_exempt": 14381,
+  "n_full": 5645,
+  "n_full_treated": 2884,
+  "n_full_control": 2761,
+  "n_clusters_full": 202,
+  "central_mean_full": 0.3136544730170228,
+  "tau_dim_full": 0.018869798827637396,
+  "tau_rct": 0.031073423100765545,
+  "se_rct": 0.026155098510049223,
+  "p_rct": 0.23481584552506984,
+  "dim_all_registered": 0.04663049378203021,
+  "reasons": [
+    {
+      "outcome": "Any exemption",
+      "central_mean": 0.3136544730170228,
+      "local_mean": 0.3325242718446602,
+      "tau": 0.031073423100765545,
+      "se": 0.026155098510049223,
+      "p": 0.23481584552506984,
+      "N": 5645
+    },
+    {
+      "outcome": "Reason: elderly",
+      "central_mean": 0.1394422310756972,
+      "local_mean": 0.18654646324549237,
+      "tau": 0.04776602948910317,
+      "se": 0.022187577520743164,
+      "p": 0.03133222937260581,
+      "N": 5645
+    },
+    {
+      "outcome": "Reason: widow",
+      "central_mean": 0.14958348424483883,
+      "local_mean": 0.11997226074895978,
+      "tau": -0.0179376151499304,
+      "se": 0.013584029314868906,
+      "p": 0.18667048321348212,
+      "N": 5645
+    },
+    {
+      "outcome": "Reason: other",
+      "central_mean": 0.02462875769648678,
+      "local_mean": 0.026005547850208043,
+      "tau": 0.0012450087615927669,
+      "se": 0.006658302838323131,
+      "p": 0.8516716866195411,
+      "N": 5645
+    },
+    {
+      "outcome": "Discretionary (reason contradicts owner traits)",
+      "central_mean": 0.039478449837015574,
+      "local_mean": 0.03952843273231623,
+      "tau": -0.0008356496044606004,
+      "se": 0.007496774177482859,
+      "p": 0.9112453264173476,
+      "N": 5645
+    },
+    {
+      "outcome": "Enumerator disagrees with collector",
+      "central_mean": 0.04855072463768116,
+      "local_mean": 0.06171983356449376,
+      "tau": 0.013269684244614898,
+      "se": 0.009299123605815309,
+      "p": 0.15358501350819526,
+      "N": 5644
+    }
+  ],
+  "share_discretionary_central": 0.1258660508083141,
+  "share_discretionary_local": 0.11887382690302398,
+  "n_biased": 2740,
+  "n_biased_treated": 1412,
+  "n_biased_control": 1328,
+  "age_range_biased": [
+    [
+      18.0,
+      18.0
+    ],
+    [
+      87.5,
+      99.0
+    ]
+  ],
+  "tau_dim_biased": 0.2187745315539779,
+  "tau_naive": 0.19986828018276465,
+  "tau_adj_ols_biased": 0.04112288510871588,
+  "dowhy_estimate": 0.03858087063385557,
+  "dowhy_backdoor_vars": [
+    "owner_age"
+  ],
+  "refute_cc_new": 0.03862277300715935,
+  "refute_cc_p": 0.98,
+  "refute_subset_new": 0.03654750305616133,
+  "refute_subset_p": 0.96,
+  "table1": [
+    {
+      "estimate": "Difference in means",
+      "sample": "Full",
+      "tau": 0.018869798827637396,
+      "cluster_se": NaN,
+      "boot_lo": -0.04344410808939385,
+      "boot_hi": 0.08431742005756106
+    },
+    {
+      "estimate": "Regression: Y on D + age, female, Luluwa, state job",
+      "sample": "Full",
+      "tau": 0.031073423100765545,
+      "cluster_se": 0.026155098510049223,
+      "boot_lo": -0.023093048106232788,
+      "boot_hi": 0.08721535713814339
+    },
+    {
+      "estimate": "Difference in means",
+      "sample": "Biased",
+      "tau": 0.2187745315539779,
+      "cluster_se": NaN,
+      "boot_lo": 0.15412934987671897,
+      "boot_hi": 0.28471948088268373
+    },
+    {
+      "estimate": "Regression: Y on D + female, Luluwa, state job (no S)",
+      "sample": "Biased",
+      "tau": 0.19986828018276465,
+      "cluster_se": 0.0322636614217836,
+      "boot_lo": 0.1351267734001632,
+      "boot_hi": 0.26246988190176096
+    },
+    {
+      "estimate": "Regression: Y on D + S + X (backdoor adjustment)",
+      "sample": "Biased",
+      "tau": 0.04112288510871588,
+      "cluster_se": 0.029227487564310775,
+      "boot_lo": -0.01414426402481826,
+      "boot_hi": 0.09525408308877524
+    }
+  ],
+  "balance": [
+    {
+      "covariate": "Owner age (S)",
+      "full_central": 56.41090184715683,
+      "full_local": 56.07905686546463,
+      "full_p": 0.6593111355884169,
+      "biased_central": 49.777484939759034,
+      "biased_local": 62.84808781869688,
+      "biased_p": 1.8118920350722866e-65
+    },
+    {
+      "covariate": "Owner 55 or older",
+      "full_central": 0.537124230351322,
+      "full_local": 0.5360610263522885,
+      "full_p": 0.9620246517791929,
+      "biased_central": 0.3546686746987952,
+      "biased_local": 0.7344192634560907,
+      "biased_p": 1.3794745665878953e-62
+    },
+    {
+      "covariate": "Owner female",
+      "full_central": 0.2767113364722926,
+      "full_local": 0.24895977808599168,
+      "full_p": 0.17374271303078337,
+      "biased_central": 0.22816265060240964,
+      "biased_local": 0.28895184135977336,
+      "biased_p": 0.010217971683884408
+    },
+    {
+      "covariate": "Owner Luluwa",
+      "full_central": 0.7707352408547627,
+      "full_local": 0.805131761442441,
+      "full_p": 0.28647850084057735,
+      "biased_central": 0.7537650602409639,
+      "biased_local": 0.8080736543909348,
+      "biased_p": 0.11827519418373607
+    },
+    {
+      "covariate": "Owner works for state",
+      "full_central": 0.23904382470119523,
+      "full_local": 0.22330097087378642,
+      "full_p": 0.37510840059720774,
+      "biased_central": 0.2371987951807229,
+      "biased_local": 0.23229461756373937,
+      "biased_p": 0.8122376607284081
+    }
+  ]
+}
