@@ -1,0 +1,14 @@
+strict digraph G {
+  rankdir=LR; nodesep=0.18; ranksep=0.45; splines=true;
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=11, height=0.32, margin="0.08,0.03"];
+  edge [color="#777777", arrowsize=0.6];
+  coin [label="Coin flip"]; strat [label="Stratum\n(geography)"];
+  D [label="Local (D)", penwidth=2]; Y [label="Exempt (Y)", penwidth=2];
+  age [label="Age"]; sex [label="Sex"]; wid [label="Widowed\n(unobserved)", style="rounded,dashed"];
+  edu [label="Education"]; job [label="Employment"]; val [label="Property value"];
+  eth [label="Ethnicity"]; coe [label="Coethnic\nwith chief"];
+  coin -> D; strat -> D; D -> Y [penwidth=2, color="#333333"];
+  age -> wid; sex -> wid; age -> edu; sex -> edu; age -> job; edu -> job; edu -> val; job -> val;
+  eth -> coe; strat -> coe; strat -> val;
+  age -> Y; wid -> Y; job -> Y; val -> Y; coe -> Y;
+}

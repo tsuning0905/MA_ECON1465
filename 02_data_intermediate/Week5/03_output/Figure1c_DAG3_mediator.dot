@@ -1,0 +1,10 @@
+strict digraph G {
+  rankdir=LR; nodesep=0.3; ranksep=0.6;
+  node [shape=box, style="rounded", fontname="Helvetica", fontsize=11, height=0.32];
+  edge [color="#777777", arrowsize=0.6];
+  D [label="Local (D)", penwidth=2]; Y [label="Exempt (Y)", penwidth=2];
+  M [label="Chief knowledge and discretion (M)\nendline coethnic_bias_chief", style="rounded,dashed", color="#d68910"];
+  U [label="Personal tie to chief\n(unobserved U)", style="rounded,dashed"];
+  D -> M; M -> Y; D -> Y [label=" direct", fontsize=9, fontname="Helvetica"]; U -> M; U -> Y;
+  {rank=same; M; U}
+}

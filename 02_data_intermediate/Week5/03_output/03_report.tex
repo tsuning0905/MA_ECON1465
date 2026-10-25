@@ -1,0 +1,74 @@
+% 03_report.tex -- ECO1465 Week 5 report, Tsu Ning Tsao
+% Compiled by 00_master.py from inside 03_output/ (all figures, tables and
+% numbers.tex are produced by 02_analysis.py; nothing is typed by hand).
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{graphicx,booktabs,amsmath,float,caption,subcaption,xcolor}
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\input{numbers.tex}
+
+\begin{document}
+\begin{center}
+{\large\bfseries Do Local Chiefs Grant More Discretionary Tax Exemptions? Evidence from a Randomized Tax Collection Experiment in Kananga, D.R.\ Congo}\\[6pt]
+\textbf{Name:} Tsu Ning Tsao \qquad \textbf{Student Number:} 1012713137
+\end{center}
+
+\section*{One-Paragraph Research Summary}
+\textbf{Research question.} Does replacing central state collectors (Central, \texttt{treatment}\,=\,1) with local city chiefs (Local, \texttt{treatment}\,=\,2) increase or decrease favoritism in property-tax collection, measured as tax exemptions, and for which households is the effect larger? \textbf{Data.} Replication files of Bal\'an et al.\ (2022): the 2018 tax roll (compound level; \Nall{} compounds in \Nnb{} Central or Local neighborhoods), merged with the 2017 household baseline (\Nlinked{} compounds linked), the pre-randomization chief survey and the endline survey. Treatment is randomized at the neighborhood level within geographic strata. \textbf{Outcome and treatment.} $Y$ = \texttt{exempt} (1 if the compound is recorded as exempt), split by stated reason into old age (\emph{Troisi\`eme \^age}) and widowhood (\emph{Veuve}); secondary outcomes are old-age exemptions granted to compounds whose respondent is under 60 and the endline self-reported bribe. $D$ = Local. Because assignment is random, Local minus Central is the causal effect; no IV is needed. Local raises exemptions by \Eexempt{} pp (SE \SEexempt) over a Central mean of \Mexempt\%, almost entirely through old-age exemptions (\Eold{} pp, SE \SEold, $p=\Pold$); widow exemptions do not change (\Ewid{} pp, SE \SEwid).
+
+\section*{1. Two DAGs: the experiment and the biased sample}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{Figure1a_DAG1_experiment.pdf}
+\caption{DAG 1 -- the experiment. $D$ has two parents only: the coin flip and the randomization stratum.}
+\end{figure}
+\vspace{-6pt}
+\textbf{DAG 1.} The baseline covariates are not independent of each other, and the graph draws those links. Age drives widowhood (unobserved in the data), education (older cohorts have less schooling) and employment; sex drives widowhood and education; education and employment drive property value; ethnicity and geography (stratum) together determine whether a household is a coethnic of its chief. In the linked baseline, age correlates $\CageEdu$ with education, $\CageJob$ with having no job and $\CageFem$ with being female (Table~2). These links create many paths among the $X$'s, but none of them enters $D$: the only arrows into $D$ come from the coin flip and from the stratum, and the stratum is held fixed with stratum fixed effects. Every path from $D$ to $Y$ other than $D\to Y$ is therefore closed, so the stratum-adjusted difference in means identifies the ATE. Consistent with this, age is balanced across arms (balance $p=\SageBal$, Table~1), and adding age to the regression barely moves the estimate in the linked sample (\Elk{} pp without, \Elkage{} pp with).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{Figure1b_DAG2_biased.pdf}
+\caption{DAG 2 -- the biased sample. Selection on $S$ = age adds $S\to D$; open backdoor paths in red.}
+\end{figure}
+\vspace{-6pt}
+\textbf{DAG 2.} Adding $S\to D$ with $S$ = age opens three backdoor paths, because age reaches $Y$ both directly and through the $X$'s it causes: $D\leftarrow S\to Y$ (legal old-age exemption), $D\leftarrow S\to \text{Widowed}\to Y$ and $D\leftarrow S\to \text{Employment}\to Y$. $S$ is a common cause on all three, so conditioning on $S$ alone (plus the stratum) blocks them all; widowhood and employment need not be controlled for, which matters because widowhood is not observed. Without controlling for $S$, Local neighborhoods would hold more older households, who are exempted more for legitimate reasons, and the difference in means would overstate the effect of chiefs on exemptions. Controlling for employment or education instead of age would not be enough, because $D\leftarrow S\to Y$ would stay open.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{Figure1c_DAG3_mediator.pdf}
+\caption{DAG 3 -- mediator and collider. $M$ is measured after assignment; do not control for it.}
+\end{figure}
+\vspace{-6pt}
+\textbf{DAG 3.} Chiefs plausibly change exemptions through what they know about each household and the discretion they use ($M$), proxied in the endline by \texttt{coethnic\_bias\_chief} (from \texttt{exempt\_tribe}, an outcome in the paper's Table~5). $M$ is measured after assignment and lies on $D\to M\to Y$: controlling for it removes part of the effect. It is also a collider on $D\to M\leftarrow U\to Y$, where $U$ is an unobserved personal tie to the chief, so conditioning on it opens a non-causal path. For heterogeneity I therefore use a pre-treatment coethnic indicator (baseline tribe equals the chief's tribe in the pre-randomization chief survey), not \texttt{coethnic\_bias\_chief}.
+
+\section*{2. Candidate selection variable $S$}
+\textbf{$S$ = age of the baseline respondent} (\texttt{age}, household baseline survey, 2017), measured before the 2018 campaign and before assignment. \textbf{Predicts $Y$:} in the Central group, a one-year increase in age raises the exemption probability by \SageCoef{} pp (SE 0.08), $R^2=\SageR$, AUC $=\SageAUC$ ($N=\SageN$); the share exempt rises from \Fyoung\% for respondents under 30 to \Fold\% for those 70 and older (Figure~\ref{fig:age}). Age, used either in years or as a 60-plus indicator ($R^2=\SoldR$), ranks first of eight pre-treatment candidates, with about six times the $R^2$ of the best non-age candidate (no job, $R^2=\SnextR$), and it keeps its size when the other $X$'s are held fixed (joint coefficient \SjointAge{} pp, Table~1), so it is not standing in for employment or education. \textbf{Selection story:} outside the experiment, the government would hand collection to chiefs in older, long-settled neighborhoods where chiefs are entrenched and elderly households are common, so households with high $S$ would be more likely to be treated.
+
+\begin{table}[H]
+\centering\footnotesize
+\caption{Pre-treatment candidates for $S$, ranked by $R^2$. Coef., SE, $R^2$, AUC: OLS of \texttt{exempt} on the candidate, Central group only, SE clustered by neighborhood. Joint coef.: same regression with all household covariates together ($N=\SjointN$). Balance $p$: Local--Central difference in the candidate with stratum FE.}
+\input{Table1_candidates_S.tex}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{Figure2_exempt_by_age_central.pdf}
+\caption{Share of compounds exempt by age of the baseline respondent, Central neighborhoods only (95\% CI).}\label{fig:age}
+\end{figure}
+
+\begin{table}[H]
+\centering\footnotesize
+\caption{Correlations among pre-treatment covariates (linked baseline sample, both arms).}
+\input{Table2_X_correlations.tex}
+\end{table}
+
+\section*{3. Do operation vs.\ statistical conditioning}
+$P(Y=1\mid D=\text{Local})$ is the exemption rate among compounds that happen to be in Local neighborhoods: it is an association and includes anything else that differs between the groups. $P(Y=1\mid do(D=\text{Local}))$ is the exemption rate if every neighborhood were set to Local, which deletes all arrows into $D$; it is the causal quantity. In DAG~1 the two are equal, because within a stratum the coin flip is the only parent of $D$, so the Local group is a random draw from the same population. In DAG~2 they differ: conditioning on $D=\text{Local}$ selects older households, so $P(Y\mid D)$ mixes the chief effect with legitimate old-age exemptions. The intervention is recovered by adjusting for $S$:
+\[
+P\big(Y=1\mid do(D=d)\big)=\sum_{s} P\big(Y=1\mid D=d,\,S=s\big)\,P(S=s).
+\]
+
+\end{document}
