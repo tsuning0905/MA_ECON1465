@@ -1,0 +1,37 @@
+\begin{table}[!htbp]\centering\footnotesize
+\caption{OLS: effect of Local (vs Central) collection on tax exemptions}
+\label{tab:ols}
+\begin{tabular}{lcccccc}
+\hline\hline
+ & (1) & (2) & (3) & (4) & (5) & (6) \\
+ & Exempt & Exempt & Exempt & Senior & Widow & Unjust. senior \\ \hline
+Local & $0.002$ & $0.056$ & $0.045$ & $0.075^{**}$ & $-0.027$ & $0.030$ \\
+ & (0.045) & (0.042) & (0.043) & (0.037) & (0.025) & (0.020) \\
+Age &  & $0.012^{***}$ & $0.011^{***}$ & $0.009^{***}$ & $0.002$ & $-0.002^{***}$ \\
+ &  & (0.001) & (0.002) & (0.001) & (0.001) & (0.001) \\
+Co-ethnic &  & $-0.127^{***}$ & $-0.120^{**}$ & $-0.086^{*}$ & $-0.020$ & $-0.016$ \\
+ &  & (0.043) & (0.057) & (0.051) & (0.037) & (0.029) \\
+Female &  & $0.107^{***}$ & $0.126^{***}$ & $-0.046$ & $0.200^{***}$ & $0.014$ \\
+ &  & (0.034) & (0.048) & (0.043) & (0.046) & (0.024) \\
+Local $\times$ Age &  &  & $0.001$ & $0.001$ & $-0.001$ & $0.000$ \\
+ &  &  & (0.002) & (0.002) & (0.001) & (0.001) \\
+Local $\times$ Co-ethnic &  &  & $0.039$ & $-0.095$ & $0.080$ & $-0.046$ \\
+ &  &  & (0.095) & (0.084) & (0.059) & (0.043) \\
+Local $\times$ Female &  &  & $-0.040$ & $0.009$ & $-0.052$ & $0.003$ \\
+ &  &  & (0.067) & (0.058) & (0.057) & (0.035) \\
+Local $\times$ Log income &  &  & $-0.012$ & $-0.006$ & $-0.013^{*}$ & $-0.004$ \\
+ &  &  & (0.012) & (0.010) & (0.008) & (0.004) \\
+Local $\times$ Assets &  &  & $0.013$ & $-0.007$ & $0.026$ & $0.009$ \\
+ &  &  & (0.022) & (0.023) & (0.018) & (0.013) \\
+\hline
+Baseline covariates & No & Yes & Yes & Yes & Yes & Yes \\
+Local $\times$ covariates & No & No & Yes & Yes & Yes & Yes \\
+Stratum, house, time FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+Central mean & 0.384 & 0.384 & 0.384 & 0.234 & 0.124 & 0.043 \\
+Observations & 1,163 & 1,163 & 1,163 & 1,163 & 1,163 & 1,160 \\
+Clusters & 172 & 172 & 172 & 172 & 172 & 172 \\
+$R^2$ & 0.089 & 0.258 & 0.266 & 0.230 & 0.161 & 0.128 \\
+\hline\hline
+\end{tabular}
+\begin{minipage}{0.97\linewidth}\vspace{3pt}\scriptsize Notes: Unit is a property registered by a collector in a Central or Local neighbourhood and matched to the 2017 baseline survey. Exempt = collector recorded the property as tax-exempt; Senior/Widow = exempted for that reason; Unjust.\ senior = exempted as a senior although the owner was under 55 at baseline. Covariates are centred at the sample mean, so Local is the effect for an average household. Columns (2)--(6) also control for HH size, education, log income, born in Kananga, works for government, renters, assets, Luluwa and missing-value dummies; columns (3)--(6) interact every covariate with Local. Only key coefficients are shown. Standard errors clustered by neighbourhood in parentheses. $^{*}p<0.1$, $^{**}p<0.05$, $^{***}p<0.01$.\end{minipage}
+\end{table}

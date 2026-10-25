@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{graphicx,amsmath,booktabs}
+\usepackage{times}
+\usepackage{float}
+\setlength{\parindent}{0pt}
+\pagestyle{plain}
+\begin{document}
+
+{\large\textbf{Do Local Chiefs Grant More Discretionary Tax Exemptions? Collector Identity and Property-Tax Exemptions in Kananga, DRC}}\\[4pt]
+Name: Tsu Ning Tsao \qquad Student Number: \rule{3cm}{0.4pt}
+
+\section{OLS}
+\vspace{-4pt}
+\begin{align*}
+\text{Exempt}_{ij} = \beta_0 + \beta_1 \text{Local}_j + X_i'\gamma + (\text{Local}_j \times X_i)'\delta
+ + \alpha_{s(j)} + \mu_{h(i)} + \tau_{t(i)} + \varepsilon_{ij}
+\end{align*}
+\vspace{-6pt}
+{\small where $i$ is a property, $j$ its neighbourhood, Local$_j=1$ if chiefs collect (tmt$=2$) and 0 if state agents collect (tmt$=1$);
+$X_i$ = baseline age, female, education, log income, HH size, born in Kananga, works for government, renters, assets, Luluwa, co-ethnic with collector (centred);
+$\alpha_s$ stratum, $\mu_h$ house-type and $\tau_t$ two-month time fixed effects. SEs clustered by neighbourhood.}
+
+\input{Table1_OLS_exemption.tex}
+
+\newpage
+\section{Ridge}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{Figure1_Ridge.pdf}
+\caption{Ridge: coefficient path (left) and 10-fold CV MSE with $\pm1$ SE bars (right). Outcome: Exempt; 23 standardized features (Local, 11 covariates, 11 Local$\times$covariate interactions); fixed effects and missing dummies partialled out. Dashed: $\lambda_{min}$; dotted: $\lambda_{1se}$.}
+\end{figure}
+
+\section{LASSO}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{Figure2_Lasso.pdf}
+\caption{Lasso: coefficient path (left) and 10-fold CV MSE with $\pm1$ SE bars (right). Same features, sample and folds as Figure 1.}
+\end{figure}
+
+\textbf{Findings.} All three models agree that \emph{age} is by far the strongest predictor of being exempted, while the Local treatment and its interactions are small: in OLS, Local raises exemptions for seniors by 7.5 pp ($p<0.05$) but not for widows, and no Local$\times$covariate term, including Local$\times$co-ethnic, is significant. Lasso sharpens this: at $\lambda_{min}$ it sets Local, Local$\times$Age and Local$\times$Co-ethnic to exactly zero (keeping only age, female, co-ethnic, assets and three tiny interactions), and at $\lambda_{1se}$ only age survives, so the heterogeneity terms add almost no predictive power. This tells us more than OLS alone: any favouritism by chiefs is too small or too non-linear to show up in linear interactions, which motivates the next step of estimating heterogeneity flexibly with a causal forest.
+
+\end{document}
