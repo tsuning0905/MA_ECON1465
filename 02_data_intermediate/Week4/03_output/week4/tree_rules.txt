@@ -1,0 +1,19 @@
+|--- owner_age <= 63.50
+|   |--- owner_female <= 0.50
+|   |   |--- owner_age <= 55.50
+|   |   |   |--- value: [0.09]
+|   |   |--- owner_age >  55.50
+|   |   |   |--- value: [0.22]
+|   |--- owner_female >  0.50
+|   |   |--- owner_age <= 52.75
+|   |   |   |--- value: [0.25]
+|   |   |--- owner_age >  52.75
+|   |   |   |--- value: [0.57]
+|--- owner_age >  63.50
+|   |--- owner_female <= 0.50
+|   |   |--- owner_age <= 72.75
+|   |   |   |--- value: [0.42]
+|   |   |--- owner_age >  72.75
+|   |   |   |--- value: [0.68]
+|   |--- owner_female >  0.50
+|   |   |--- value: [0.74]

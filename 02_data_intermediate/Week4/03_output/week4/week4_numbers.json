@@ -1,0 +1,242 @@
+{
+  "ols_exempt_Exempt (any ": {
+    "coef": 0.04029867280188014,
+    "se": 0.02021248008367658,
+    "p": 0.04617916240499597,
+    "central_mean": 0.26352530541012215,
+    "n": 14381
+  },
+  "ols_exempt_elderly_Exempt: old ": {
+    "coef": 0.03474407763421289,
+    "se": 0.014226793750664256,
+    "p": 0.014599756911521142,
+    "central_mean": 0.12552020405423547,
+    "n": 14381
+  },
+  "ols_exempt_widow_Exempt: wido": {
+    "coef": -0.0009800772397830768,
+    "se": 0.011515693028736462,
+    "p": 0.9321755553315966,
+    "central_mean": 0.11209558329977178,
+    "n": 14381
+  },
+  "ols_exempt_other_reason_Exempt: othe": {
+    "coef": 0.006534672407450226,
+    "se": 0.0037777776691752946,
+    "p": 0.083672042164392,
+    "central_mean": 0.025909518056114914,
+    "n": 14381
+  },
+  "ols_exempt_elderly_u60_Old-age exem": {
+    "coef": 0.01367739552696547,
+    "se": 0.006383622242937217,
+    "p": 0.03214716358608165,
+    "central_mean": 0.022435897435897436,
+    "n": 6299
+  },
+  "ols_exempt_elderly_u55_Old-age exem": {
+    "coef": 0.010075189423283832,
+    "se": 0.004404349367851954,
+    "p": 0.02216347543347109,
+    "central_mean": 0.013782051282051282,
+    "n": 6299
+  },
+  "ols_bribe_Reports payi": {
+    "coef": 0.0016893198509671996,
+    "se": 0.003157212046425202,
+    "p": 0.592603555989739,
+    "central_mean": 0.014212620807276862,
+    "n": 10222
+  },
+  "ols_exempt_Exempt, owne": {
+    "coef": 0.01582265066216242,
+    "se": 0.034425310922265646,
+    "p": 0.645787139609153,
+    "central_mean": 0.5252679938744257,
+    "n": 2648
+  },
+  "sample": {
+    "n": 6292,
+    "n_train": 4885,
+    "n_test": 1407,
+    "a7_train": 163,
+    "a7_test": 41,
+    "p": 16,
+    "exempt_rate": 0.30626191989828355
+  },
+  "tree": {
+    "alpha": 0.0007522665299182201,
+    "leaves": 7,
+    "depth": 3,
+    "uses_local": false
+  },
+  "importance": [
+    {
+      "feature": "owner_age",
+      "mdi": 0.3287650238443521,
+      "mdi_rank": 1,
+      "perm_mse_increase": 0.0700960648187633,
+      "perm_rank": 1
+    },
+    {
+      "feature": "dist_center",
+      "mdi": 0.18513161342777862,
+      "mdi_rank": 2,
+      "perm_mse_increase": 0.0023081407249466793,
+      "perm_rank": 5
+    },
+    {
+      "feature": "transport_cost",
+      "mdi": 0.11670416644211978,
+      "mdi_rank": 3,
+      "perm_mse_increase": 0.0011066565742714808,
+      "perm_rank": 6
+    },
+    {
+      "feature": "owner_female",
+      "mdi": 0.07049740676900218,
+      "mdi_rank": 4,
+      "perm_mse_increase": 0.021602584079601972,
+      "perm_rank": 2
+    },
+    {
+      "feature": "rate",
+      "mdi": 0.06906062485857545,
+      "mdi_rank": 5,
+      "perm_mse_increase": 0.0005829620469082975,
+      "perm_rank": 8
+    },
+    {
+      "feature": "walls",
+      "mdi": 0.05808198918437727,
+      "mdi_rank": 6,
+      "perm_mse_increase": -0.0008218027007818249,
+      "perm_rank": 13
+    },
+    {
+      "feature": "owner_luluwa",
+      "mdi": 0.03015932824898047,
+      "mdi_rank": 7,
+      "perm_mse_increase": 0.002851389765458401,
+      "perm_rank": 3
+    },
+    {
+      "feature": "job_gov",
+      "mdi": 0.02727439657858127,
+      "mdi_rank": 8,
+      "perm_mse_increase": -6.930277185502875e-05,
+      "perm_rank": 9
+    },
+    {
+      "feature": "coethnic_collector",
+      "mdi": 0.025982027147940297,
+      "mdi_rank": 9,
+      "perm_mse_increase": 0.002506865529495364,
+      "perm_rank": 4
+    },
+    {
+      "feature": "tmt_2016",
+      "mdi": 0.01992000121732217,
+      "mdi_rank": 10,
+      "perm_mse_increase": -0.0009526841506752135,
+      "perm_rank": 15
+    },
+    {
+      "feature": "local",
+      "mdi": 0.019834512862653683,
+      "mdi_rank": 11,
+      "perm_mse_increase": -0.0009105549395877918,
+      "perm_rank": 14
+    },
+    {
+      "feature": "commune_4",
+      "mdi": 0.012192358346088093,
+      "mdi_rank": 12,
+      "perm_mse_increase": -0.000222599431414372,
+      "perm_rank": 11
+    },
+    {
+      "feature": "commune_1",
+      "mdi": 0.01191078283051723,
+      "mdi_rank": 13,
+      "perm_mse_increase": 0.0007313519545131278,
+      "perm_rank": 7
+    },
+    {
+      "feature": "commune_3",
+      "mdi": 0.01149210835652917,
+      "mdi_rank": 14,
+      "perm_mse_increase": -0.0006056392324094009,
+      "perm_rank": 12
+    },
+    {
+      "feature": "house_mm",
+      "mdi": 0.007747878400545349,
+      "mdi_rank": 15,
+      "perm_mse_increase": -0.00020833148543001055,
+      "perm_rank": 10
+    },
+    {
+      "feature": "commune_2",
+      "mdi": 0.005245781484636857,
+      "mdi_rank": 16,
+      "perm_mse_increase": -0.0013232588486140936,
+      "perm_rank": 16
+    }
+  ],
+  "boosting": {
+    "B_best": 272,
+    "lr": 0.01,
+    "depth": 3
+  },
+  "errors": [
+    {
+      "model": "Mean only (benchmark)",
+      "test_mse": 0.2047820742705864,
+      "cv_mse": NaN,
+      "oob_mse": NaN,
+      "test_rmse": 0.4525285342059508,
+      "pct_vs_mean": 0.0
+    },
+    {
+      "model": "OLS (linear probability)",
+      "test_mse": 0.14284677599754114,
+      "cv_mse": NaN,
+      "oob_mse": NaN,
+      "test_rmse": 0.3779507586942261,
+      "pct_vs_mean": -30.244492099053446
+    },
+    {
+      "model": "Regression tree (pruned)",
+      "test_mse": 0.14335484119528122,
+      "cv_mse": 0.15926113561157682,
+      "oob_mse": NaN,
+      "test_rmse": 0.3786222935793417,
+      "pct_vs_mean": -29.996391673491406
+    },
+    {
+      "model": "Bagging (m = p = 16)",
+      "test_mse": 0.15530247050461976,
+      "cv_mse": NaN,
+      "oob_mse": 0.15459203891230736,
+      "test_rmse": 0.394084344404367,
+      "pct_vs_mean": -24.16207763409376
+    },
+    {
+      "model": "Random forest (m = 5)",
+      "test_mse": 0.14901847050461978,
+      "cv_mse": NaN,
+      "oob_mse": 0.14860359247733282,
+      "test_rmse": 0.3860291057739297,
+      "pct_vs_mean": -27.230705599887628
+    },
+    {
+      "model": "Boosting (B = 272, $\\lambda$ = 0.01, d = 3)",
+      "test_mse": 0.14122564831337686,
+      "cv_mse": 0.1554671125956799,
+      "oob_mse": NaN,
+      "test_rmse": 0.3758000110609057,
+      "pct_vs_mean": -31.03612764134325
+    }
+  ]
+}
