@@ -1,0 +1,12 @@
+\begin{tabular}{llccc}
+\toprule
+Sample & Estimator & $\hat\tau$ & Cluster SE & Bootstrap 95\% CI\\
+\midrule
+Full & Difference in means & 0.019 &  & [-0.043, 0.084]\\
+Full & Regression: Y on D + age, female, Luluwa, state job & 0.031 & 0.026 & [-0.023, 0.087]\\
+Biased & Difference in means & 0.219 &  & [0.154, 0.285]\\
+Biased & Regression: Y on D + female, Luluwa, state job (no S) & 0.200 & 0.032 & [0.135, 0.262]\\
+Biased & Regression: Y on D + S + X (backdoor adjustment) & 0.041 & 0.029 & [-0.014, 0.095]\\
+Biased & DoWhy backdoor linear regression & 0.039 & & \\
+\bottomrule
+\end{tabular}

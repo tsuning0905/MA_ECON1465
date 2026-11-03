@@ -1,0 +1,12 @@
+sample,estimator,target,tau,se,se_type,ci_lo,ci_hi,share_of_bias_removed
+Full,Benchmark: regression Y on D + S + X ($\hat\tau^{RCT}$),ATE,0.031073423100765545,0.026155098510049223,cluster,,,1.0
+Full,IPW (score on S + X),ATE,0.031118603184854488,,,,,0.9997323373183877
+Biased,Difference in means,--,0.2187745315539779,,,,,-0.11200727141839856
+Biased,"Naive: regression Y on D + X, no S ($\hat\tau^{naive}$)",--,0.19986828018276465,0.0322636614217836,cluster,,,0.0
+Biased,"PS matching, 1-NN with replacement",ATE,0.0477646136492391,0.01928656625857073,AI,,,0.9011155266397417
+Biased,"PS matching, 1-NN with replacement",ATT,0.056854565623475795,0.02561571937345643,AI,,,0.8472634595129519
+Biased,"IPW, Horvitz--Thompson (divide by $N$)",ATE,0.033307178530904424,0.030701079832332376,boot,-0.03137510150234332,0.08944226969058885,0.9867664485236435
+Biased,"IPW, normalised weights (Hajek)",ATE,0.029582200907660505,0.028043460988065313,boot,-0.029093909370563643,0.08379744542664003,1.0088345238645549
+Biased,DoWhy PS matching (score on S only),ATE,-0.010948905109489052,,,,,1.2489550270470653
+Biased,"DoWhy IPW, ips\_weight (score on S only)",ATE,0.02384114677397353,,,,,1.0428465443309012
+Biased,Week 6: regression Y on D + S + X,--,0.04112288510871588,0.029227487564310775,cluster,,,0.940463458533761

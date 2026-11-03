@@ -1,0 +1,20 @@
+\begin{tabular}{lllccc}
+\toprule
+Sample & Estimator & Target & $\hat\tau$ & SE & 95\% CI\\
+\midrule
+Full & Benchmark: regression Y on D + S + X ($\hat\tau^{RCT}$) & ATE & 0.031 & 0.026$^c$ & \\
+Full & IPW (score on S + X) & ATE & 0.031 &  & \\
+\addlinespace
+Biased & Difference in means & -- & 0.219 &  & \\
+Biased & Naive: regression Y on D + X, no S ($\hat\tau^{naive}$) & -- & 0.200 & 0.032$^c$ & \\
+\addlinespace
+Biased & PS matching, 1-NN with replacement & ATE & 0.048 & 0.019$^a$ & \\
+Biased & PS matching, 1-NN with replacement & ATT & 0.057 & 0.026$^a$ & \\
+Biased & IPW, Horvitz--Thompson (divide by $N$) & ATE & 0.033 & 0.031$^b$ & [-0.031, 0.089]\\
+Biased & IPW, normalised weights (Hajek) & ATE & 0.030 & 0.028$^b$ & [-0.029, 0.084]\\
+\addlinespace
+Biased & DoWhy PS matching (score on S only) & ATE & -0.011 &  & \\
+Biased & DoWhy IPW, ips\_weight (score on S only) & ATE & 0.024 &  & \\
+Biased & Week 6: regression Y on D + S + X & -- & 0.041 & 0.029$^c$ & \\
+\bottomrule
+\end{tabular}
