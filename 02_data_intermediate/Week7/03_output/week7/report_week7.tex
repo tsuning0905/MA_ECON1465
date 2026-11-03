@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{booktabs,graphicx,float,amsmath,xcolor,enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titlespacing*{\subsection}{0pt}{8pt}{2pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist{nosep,leftmargin=1.2em}
+\setlist[itemize]{label=\textbullet}
+\newcommand{\taurct}{\hat\tau^{\,\mathrm{RCT}}}
+\newcommand{\taunaive}{\hat\tau^{\,\mathrm{naive}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Do City Chiefs Grant More Discretionary Tax Exemptions?}
+
+\vspace{4pt}
+\textbf{Name:} Tsu Ning Tsao \quad \textbf{Student Number:} 1012713137
+\end{center}
+
+\section{Propensity Score Matching or IPW Model (biased sample)}
+All results below use the biased sample from Week 6 (Recipe B, $\alpha=0$, $\gamma=1$, $S$ = owner age, seed 1465; 1,328 Central and 1,412 Local properties), unless a row is marked ``Full'' (the full experimental sample of 5,645 properties). Treatment $D$ = the neighbourhood is assigned to Local (chief) collection; outcome $Y$ = the property is registered as tax-exempt.
+
+\subsection{Step 1: Run your model}
+\begin{itemize}
+\item \textbf{Variables in the propensity score.} I estimate the probability that a property is in a Local neighbourhood with a logistic regression of $D$ on the selection variable $S$ (owner age) and the three baseline owner traits $X$: female, Luluwa (main tribe) and works for the state. The model is fit on the 2,740 properties of the biased sample, and gives each property a score $\hat e$ between 0 and 1.
+\item \textbf{Propensity score matching.} For every property I find the property in the other group with the closest score (one twin, drawn with replacement, so a property can be the twin of several others). When several properties are equally close, which happens often because owner ages cluster at round numbers, I average their outcomes. The twin's outcome fills in the missing potential outcome. Averaging the differences over all properties gives the ATE; averaging over Local properties only gives the ATT. Standard errors follow Abadie and Imbens (2006).
+\item \textbf{Inverse probability weighting.} I keep every property and weight a Local property by $1/\hat e$ and a Central property by $1/(1-\hat e)$, so Local properties with young owners and Central properties with old owners count more. The ATE is the weighted Local mean minus the weighted Central mean, each divided by $N$ (Horvitz--Thompson). I also report the normalised (Hajek) version, which divides by the sum of the weights instead.
+\item \textbf{Cross-check.} I repeat both estimators with the DoWhy package, where the score uses only owner age, the single back-door variable in DAG 2.
+\end{itemize}
+
+\subsection{Step 2: Display the Positivity Check Graph}
+\begin{figure}[H]\centering
+\includegraphics[width=0.72\linewidth]{figure1_positivity.pdf}
+\caption{Estimated propensity score, biased sample. Dark bars: Local (up) and Central (down). Light bars: the same properties after IPW weighting. Dotted lines at 0.05 and 0.95.}
+\end{figure}
+\begin{itemize}
+\item \textbf{The positivity assumption holds.} Local scores run from 0.07 to 0.95 and Central scores from 0.06 to 0.91, so the two groups cover the same range. No property has a score below 0.05 or above 0.95, and only 2.3\% fall outside $[0.10, 0.90]$.
+\item As expected, Local properties sit at high scores (older owners) and Central properties at low scores, but both groups have properties in every bin except the last one (0.925--0.95), which holds a handful of Local properties.
+\item The weights are well behaved: the largest is 14, the top 1\% of weights carry 4.3\% of the total, and each weighted group sums to about $N$ (2,761 and 2,731 vs 2,740).
+\item The selection with $\gamma=1$ is strong enough to bias the naive estimate but not so strong that it breaks overlap, so I do not need to rebuild the sample with a smaller $\gamma$.
+\end{itemize}
+
+\begin{table}[H]\centering\small
+\caption{Covariate balance before and after adjustment (standardised mean difference, SMD = difference in means / pooled SD). Columns 2--8: biased sample.}
+\input{table1_balance.tex}
+\par\smallskip\footnotesize ``Full'': full experimental sample, unweighted. IPW: weights $1/\hat e$ and $1/(1-\hat e)$. Matching: each property weighted by one plus the number of times it is used as a twin.
+\end{table}
+Selection opened an SMD of 0.97 in owner age (49.8 vs 62.8 years). After weighting or matching every SMD is below 0.04 and average owner age is about 56 in both groups, the same as in the experiment.
+
+\subsection{Step 3: Compare to the benchmark}
+\begin{table}[H]\centering\small
+\caption{Effect of Local collection on the probability of exemption. Rows 1--2: full experimental sample; all other rows: biased sample.}
+\resizebox{\linewidth}{!}{\input{table2_estimates.tex}}
+\par\smallskip\footnotesize $^c$ SE clustered by neighbourhood. $^a$ Abadie--Imbens (2006) SE (score treated as known, not clustered); the bootstrap is not valid for nearest-neighbour matching (Abadie and Imbens 2008). $^b$ Bootstrap SE and 95\% percentile CI: 500 draws resampling neighbourhoods, score re-estimated in each draw, seed 1465.
+\end{table}
+\begin{itemize}
+\item \textbf{Against $\taurct=0.031$ and $\taunaive=0.200$, IPW gives 0.033 (Hajek 0.030) and repairs essentially all of the 17-point selection bias, while matching gives 0.048 (ATE) and repairs about 90\% of it.}
+\item Matching sits a little higher because a twin is only close in score, not identical; the ATT (0.057) averages over Local owners, who are older in this sample. The DoWhy matching estimate ($-0.011$) moves more because it keeps one arbitrary twin among many tied ages, while DoWhy IPW (0.024) is close to mine.
+\item Sanity check: IPW on the full sample gives 0.031, the same as $\taurct$. Treatment is random there, so there is nothing to correct.
+\item \textbf{Recipe B check.} Because $\Lambda(\gamma S)/\Lambda(-\gamma S)=e^{\gamma S}$, Recipe B implies \[\operatorname{logit}\Pr(D=1\mid S,\text{kept}) = \log\tfrac{p}{1-p} + \gamma S,\] where $p$ is the Local share in the full sample. So the coefficient on standardised $S$ should be close to $\gamma$.
+\end{itemize}
+\begin{table}[H]\centering\small
+\caption{Logistic regression of $D$ on standardised $S$ (full-sample mean and SD, as in the recipe), biased sample, SE clustered by neighbourhood.}
+\input{table3_gamma_check.tex}
+\end{table}
+\begin{itemize}
+\item $\hat\gamma = 1.04$ (95\% CI $[0.91, 1.17]$) against the chosen $\gamma=1$: same sign and similar size, and the constant (0.05) matches $\log(p/(1-p))=0.04$.
+\item Adding $X$ leaves the coefficient at 1.05, and none of the owner traits in $X$ predicts $D$ (all $p\ge0.19$), consistent with DAG 2, where only $S$ points into $D$.
+\end{itemize}
+
+\subsection{Step 4 (optional for now): Bootstrap and Get Confidence Intervals}
+\begin{figure}[H]\centering
+\includegraphics[width=0.72\linewidth]{figure2_bootstrap_ipw.pdf}
+\caption{Bootstrap distribution of the IPW ATE, biased sample. 500 draws resampling neighbourhoods (the unit of randomisation), propensity score re-estimated in every draw, seed 1465.}
+\end{figure}
+\begin{itemize}
+\item I resample whole neighbourhoods, since treatment was assigned by neighbourhood, and re-estimate the propensity score in every draw so the CI reflects the uncertainty in $\hat e$.
+\item The bootstrap SE of the IPW ATE is 0.031 and the 95\% CI is $[-0.031, 0.089]$. It contains $\taurct=0.031$ and is far from $\taunaive=0.200$: like the benchmark, the corrected effect of Local collection on exemptions is small and not significant.
+\item I bootstrap IPW only; for nearest-neighbour matching the bootstrap is not valid, so matching uses the Abadie--Imbens SE.
+\end{itemize}
+
+\end{document}
