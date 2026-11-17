@@ -1,0 +1,17 @@
+\begin{tabular}{llccccc}
+\toprule
+Sample & Estimator & ATE & SE & 95\% CI & Gap to $\hat\tau^{\,\mathrm{RCT}}$ & Bias removed \\
+\midrule
+Full & Benchmark: OLS of Y on D + S + X ($\hat\tau^{\,\mathrm{RCT}}$) & 0.031 & 0.026$^c$ & -- & +0.000 & -- \\
+Full & DR, LinearDRLearner (Part 2) & 0.034 & 0.027$^b$ & [-0.018, 0.085] & +0.003 & -- \\
+\midrule
+Biased & Naive: OLS of Y on D + X, no S ($\hat\tau^{\,\mathrm{naive}}$) & 0.200 & 0.032$^c$ & -- & +0.169 & 0\% \\
+Biased & Week 7: PS matching, 1-NN (ATE) & 0.048 & 0.019$^a$ & -- & +0.017 & 90\% \\
+Biased & Week 7: IPW, Horvitz--Thompson & 0.033 & 0.031$^b$ & [-0.031, 0.089] & +0.002 & 99\% \\
+Biased & Week 7: IPW, Hajek (normalised) & 0.030 & 0.028$^b$ & [-0.029, 0.084] & -0.001 & 101\% \\
+\midrule
+Biased & Week 9: DR, LinearDRLearner, S included & 0.039 & 0.031$^b$ & [-0.041, 0.092] & +0.008 & 95\% \\
+Biased & Week 9: DR, ForestDRLearner, S included & 0.040 & 0.031$^b$ & [-0.042, 0.095] & +0.009 & 95\% \\
+Biased & Week 9: DR, LinearDRLearner, S removed & 0.204 & 0.036$^b$ & [0.129, 0.274] & +0.173 & -2\% \\
+\bottomrule
+\end{tabular}

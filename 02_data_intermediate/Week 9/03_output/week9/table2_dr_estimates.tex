@@ -1,0 +1,15 @@
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{S included (covariates S, X)} & \multicolumn{2}{c}{S removed (X only)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+DR learner & ATE (SE) & 95\% CI & ATE (SE) & 95\% CI \\
+\midrule
+DRLearner, GBR final stage & 0.039 (0.031) & [-0.041, 0.092] & 0.204 (0.036) & [0.129, 0.274] \\
+LinearDRLearner (main) & 0.039 (0.031) & [-0.041, 0.092] & 0.204 (0.036) & [0.129, 0.274] \\
+SparseLinearDRLearner & 0.039 (0.031) & [-0.041, 0.092] & 0.204 (0.036) & [0.129, 0.274] \\
+ForestDRLearner & 0.040 (0.031) & [-0.042, 0.095] & 0.202 (0.036) & [0.131, 0.277] \\
+LinearDRLearner, random-forest nuisances & 0.039 (0.032) & [-0.039, 0.094] & 0.203 (0.036) & [0.130, 0.273] \\
+\midrule
+\multicolumn{5}{l}{Benchmarks: $\hat\tau^{\,\mathrm{RCT}}=0.031$ (full sample), $\hat\tau^{\,\mathrm{naive}}=0.200$ (biased sample, no S)} \\
+\bottomrule
+\end{tabular}

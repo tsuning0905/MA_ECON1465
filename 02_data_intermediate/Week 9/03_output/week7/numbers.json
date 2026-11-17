@@ -1,0 +1,81 @@
+{
+  "seed": 1465,
+  "n_boot": 500,
+  "gamma": 1.0,
+  "ps_covariates": [
+    "owner_age",
+    "owner_female",
+    "main_tribe",
+    "job_gov"
+  ],
+  "n_full": 5645,
+  "n_biased": 2740,
+  "n_biased_treated": 1412,
+  "n_biased_control": 1328,
+  "tau_rct": 0.031073423100765545,
+  "se_rct": 0.026155098510049223,
+  "tau_dim_biased": 0.2187745315539779,
+  "tau_naive": 0.19986828018276465,
+  "se_naive": 0.0322636614217836,
+  "tau_reg_adj": 0.04112288510871588,
+  "se_reg_adj": 0.029227487564310775,
+  "tau_ipw_full": 0.031118603184854488,
+  "ps_full_range": [
+    0.417808998332397,
+    0.5426769416040109
+  ],
+  "ps_range_local": [
+    0.07141232713782054,
+    0.9451111038738971
+  ],
+  "ps_range_central": [
+    0.0563866719427807,
+    0.9084421184364937
+  ],
+  "share_outside_05_95": 0.0,
+  "share_outside_10_90": 0.02335766423357664,
+  "max_weight": 14.00318460523032,
+  "weight_sum_local": 2761.4480857920453,
+  "weight_sum_central": 2731.026536893123,
+  "share_weight_top1pct": 0.04337922251988221,
+  "ess_local": 1034.31996222785,
+  "ess_central": 992.1863000505896,
+  "tau_psm_ate": 0.0477646136492391,
+  "se_psm_ate": 0.01928656625857073,
+  "tau_psm_att": 0.056854565623475795,
+  "se_psm_att": 0.02561571937345643,
+  "tau_ipw": 0.033307178530904424,
+  "tau_ipw_hajek": 0.029582200907660505,
+  "n_controls_used_as_twins": 1120,
+  "n_treated_used_as_twins": 1226,
+  "boot_ipw": {
+    "se": 0.030701079832332376,
+    "lo": -0.03137510150234332,
+    "hi": 0.08944226969058885
+  },
+  "boot_hajek": {
+    "se": 0.028043460988065313,
+    "lo": -0.029093909370563643,
+    "hi": 0.08379744542664003
+  },
+  "dowhy_psm_ate": -0.010948905109489052,
+  "dowhy_ipw": 0.02384114677397353,
+  "dowhy_ipw_norm": 0.023841146773973476,
+  "dowhy_backdoor_vars": [
+    "owner_age"
+  ],
+  "logit_gamma_hat": 1.0418549666083745,
+  "logit_gamma_se": 0.06610490966056301,
+  "logit_gamma_ci": [
+    0.9122917244723971,
+    1.1714182087443519
+  ],
+  "logit_const": 0.05238471166038596,
+  "theory_const": 0.04358528647468523,
+  "logit_gamma_hat_withX": 1.0516985094585067,
+  "logit_x_pvalues": {
+    "owner_female": 0.3982383108357156,
+    "main_tribe": 0.19318118465806589,
+    "job_gov": 0.570610817049218
+  }
+}

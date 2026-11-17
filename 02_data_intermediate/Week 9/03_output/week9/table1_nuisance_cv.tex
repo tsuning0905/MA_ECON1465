@@ -1,0 +1,12 @@
+\begin{tabular}{llr}
+\toprule
+Model & Learner & CV loss \\
+\midrule
+Outcome (MSE) & GBR depth 3, 100 trees, leaf 100 (chosen) & 0.1546 \\
+Outcome (MSE) & OLS (linear in S, X, D) & 0.1601 \\
+Outcome (MSE) & Constant (mean) & 0.2205 \\
+Propensity (Log loss) & Logit on S, X (Week 7) (chosen) & 0.6028 \\
+Propensity (Log loss) & Gradient-boosted classifier & 0.6063 \\
+Propensity (Log loss) & Constant (share Local) & 0.6927 \\
+\bottomrule
+\end{tabular}

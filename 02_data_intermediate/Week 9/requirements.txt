@@ -1,0 +1,12 @@
+# Python 3.11+ ; install with: pip install -r requirements.txt
+# Graphviz `dot` (system package) is needed only for the Week 6 DAG figure.
+pandas==3.0.5
+numpy==2.5.3
+statsmodels==0.15.0
+scipy==1.18.1
+matplotlib==3.11.2
+scikit-learn==1.9.1
+econml==0.17.0
+joblib
+dowhy==0.14
+networkx==3.7

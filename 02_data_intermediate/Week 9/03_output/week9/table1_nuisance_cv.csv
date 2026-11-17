@@ -1,0 +1,14 @@
+model,learner,metric,cv_loss,depth,trees,leaf
+Outcome,"GBR depth 2, 100 trees, leaf 50",MSE,0.1554901361216542,2.0,100.0,50.0
+Outcome,"GBR depth 2, 100 trees, leaf 100",MSE,0.15577084221361417,2.0,100.0,100.0
+Outcome,"GBR depth 2, 200 trees, leaf 50",MSE,0.15567025366007436,2.0,200.0,50.0
+Outcome,"GBR depth 2, 200 trees, leaf 100",MSE,0.155586072040483,2.0,200.0,100.0
+Outcome,"GBR depth 3, 100 trees, leaf 50",MSE,0.15483243274666764,3.0,100.0,50.0
+Outcome,"GBR depth 3, 100 trees, leaf 100",MSE,0.15455625125034014,3.0,100.0,100.0
+Outcome,"GBR depth 3, 200 trees, leaf 50",MSE,0.15511799888376443,3.0,200.0,50.0
+Outcome,"GBR depth 3, 200 trees, leaf 100",MSE,0.15473783439120664,3.0,200.0,100.0
+Outcome,"OLS (linear in S, X, D)",MSE,0.16011403414216735,,,
+Outcome,Constant (mean),MSE,0.22045114284192016,,,
+Propensity,"Logit on S, X (Week 7)",Log loss,0.602841970014897,,,
+Propensity,Gradient-boosted classifier,Log loss,0.606320796133124,,,
+Propensity,Constant (share Local),Log loss,0.6926771831122576,,,
